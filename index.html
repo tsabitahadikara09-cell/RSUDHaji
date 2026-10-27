@@ -9,64 +9,176 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+/* Khusus onboarding: dua slide yang bisa digeser di dalam frame mobile */
+html, body { min-height:100%; }
+body { margin:0; }
+.landing-page.ossia-onboarding {
+  width:100%; min-height:100dvh; display:block !important; position:relative;
+  overflow:hidden; background:#f4f8f5;
+}
+.onboarding-track {
+  display:flex; width:200%; min-height:calc(100dvh - 96px);
+  transition:transform .32s ease; touch-action:pan-y;
+}
+.onboarding-slide {
+  width:50%; min-height:calc(100dvh - 96px); flex:0 0 50%;
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+  padding:calc(26px + env(safe-area-inset-top)) 24px 24px;
+  position:relative; overflow:hidden;
+}
+.onboarding-slide.slide-one { background:linear-gradient(160deg,#07502e 0%,#03452a 100%); color:#fff; }
+.onboarding-slide.slide-two { background:linear-gradient(160deg,#f9fcfa 0%,#eaf5ee 100%); color:#143c29; }
+.onboarding-brand { display:flex; align-items:center; gap:10px; margin:10px auto 0; font:800 1.5rem Manrope,sans-serif; }
+.onboarding-logo { width:42px;height:42px;border-radius:12px;background:#fff;color:#07502e;display:grid;place-items:center;position:relative;font-size:1.55rem;font-weight:800; }
+.onboarding-logo:after { content:"";position:absolute;width:11px;height:11px;right:-3px;top:-3px;background:#f0b323;border:2px solid #07502e;border-radius:50%; }
+.onboarding-slide h1 { font:800 clamp(1.8rem,7vw,2.2rem)/1.15 Manrope,sans-serif; margin:28px 0 14px; max-width:340px; }
+.onboarding-slide .lead { font:400 1rem/1.55 "DM Sans",sans-serif; margin:0; max-width:340px; }
+.hand-art {
+  width:190px;height:215px;display:grid;place-items:center;margin:18px auto 8px;
+  color:rgba(213,245,225,.76); position:relative;
+}
+.hand-art svg { width:100%;height:100%;filter:drop-shadow(0 8px 16px rgba(0,0,0,.1)); }
+.slide-one .hand-art { flex:1; min-height:160px; max-height:270px; }
+.slide-one .disclaimer { margin:8px 0 0; color:#c7e5d3;font-size:.76rem;line-height:1.5; }
+.slide-two .onboarding-brand { color:#07502e; }
+.analysis-illustration {
+  width:min(100%,310px);height:260px;margin:22px auto 10px;position:relative;
+  display:grid;place-items:center;border-radius:28px;
+  background:radial-gradient(circle at 50% 48%,#d9f1e3 0,#eaf7ef 50%,transparent 72%);
+}
+.xray-card {
+  width:142px;height:200px;transform:rotate(8deg);border-radius:18px;background:linear-gradient(145deg,#142720,#3d5148);
+  border:7px solid #fff;box-shadow:0 12px 30px #0a4f2b22;display:grid;place-items:center;
+}
+.xray-card svg {width:100%;height:100%;padding:10px;}
+.feature-chip {
+  position:absolute;display:flex;align-items:center;gap:7px;padding:10px 12px;
+  background:#fff;border:1px solid #e2eee6;border-radius:14px;box-shadow:0 8px 20px #0a4f2b12;
+  color:#174b31;font-size:.7rem;font-weight:700;text-align:left;
+}
+.feature-chip b {font-size:1.15rem;color:#12824c;}
+.chip-left {left:0;top:55px}.chip-right {right:0;top:32px}.chip-bottom {right:0;bottom:32px}
+.slide-two h2 {font:800 1.65rem/1.2 Manrope,sans-serif;margin:4px 0 10px;}
+.slide-two .lead {color:#71847a;}
+.slide-dots {display:flex;gap:10px;justify-content:center;align-items:center;margin:16px 0 18px;}
+.slide-dot {width:9px;height:9px;border:0;padding:0;border-radius:50%;background:#91c8a8;cursor:pointer;}
+.slide-dot.active {background:#fff;box-shadow:0 0 0 2px #fff5;}
+.slide-two .slide-dot.active {background:#07502e;box-shadow:none;}
+.onboarding-bottom {
+  position:absolute;left:0;right:0;bottom:0;z-index:5;padding:12px 18px calc(14px + env(safe-area-inset-bottom));
+  display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(0deg,#f4f8f5 78%,transparent);
+}
+.onboarding-bottom.dark {background:linear-gradient(0deg,#03452a 78%,transparent);}
+.start-btn {
+  flex:1;max-width:360px;min-height:54px;border:0;border-radius:999px;
+  background:#118349;color:#fff;font:700 1rem "DM Sans",sans-serif;
+  box-shadow:0 5px 15px #06492c20;cursor:pointer;
+}
+.slide-one .start-btn {background:#fff;color:#07502e;}
+.round-arrow {
+  width:44px;height:44px;flex:0 0 44px;border:0;border-radius:50%;
+  display:grid;place-items:center;background:#fff;color:#08733e;font-size:1.4rem;cursor:pointer;
+  box-shadow:0 4px 16px #0a4f2b12;
+}
+@media (min-width:761px) {
+  .onboarding-slide {padding-left:28px;padding-right:28px;}
+}
+@media (max-height:700px) {
+ .onboarding-slide h1 {margin-top:18px;font-size:1.7rem}
+ .hand-art {max-height:185px}
+ .analysis-illustration {height:210px;margin-top:12px}
+ .onboarding-slide {padding-top:16px}
+}
+</style>
 </head>
 <body>
-
-<section class="landing-page">
-  <div class="landing-hero">
-    <div class="login-hero">
-<div class="brand" style="display: flex; align-items: center; gap: 0.8rem;">
-<div style="background: #ffffff; width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; color: var(--rs-green-dark); font-weight: 800; font-size: 1.6rem; position: relative; font-family: var(--font-head);">
-          O
-          <span style="position: absolute; top: -4px; right: -4px; background: #f0b323; width: 14px; height: 14px; border-radius: 50%; border: 3px solid var(--rs-green-dark);"></span>
-</div>
-<span style="font-size: 2rem; letter-spacing: 1px; font-weight: 800; color: #ffffff;">OSSIA</span>
-</div>
-<div style="margin-top: 2rem;">
-<h1>Skrining Usia Tulang Karpal</h1>
-<p>Unggah citra X-ray karpal, otomatisasi segmentasi Otsu, dan dapatkan rasio osifikasi dalam hitungan detik.</p>
-<div style="margin-top: 3rem; display: flex; justify-content: center; align-items: center; padding: 1rem 0;">
-<svg fill="none" height="140" viewbox="0 0 120 120" width="140" xmlns="http://www.w3.org/2000/svg">
-<g stroke="rgba(255,255,255,0.15)" stroke-linecap="round" stroke-linejoin="round" stroke-width="14">
-<line x1="48" x2="48" y1="120" y2="100"></line>
-<line x1="72" x2="72" y1="120" y2="100"></line>
-<line x1="42" x2="42" y1="85" y2="65"></line>
-<line x1="54" x2="54" y1="90" y2="60"></line>
-<line x1="66" x2="66" y1="90" y2="60"></line>
-<line x1="78" x2="78" y1="85" y2="65"></line>
-<line x1="42" x2="42" y1="65" y2="40"></line>
-<line x1="54" x2="54" y1="60" y2="22"></line>
-<line x1="66" x2="66" y1="60" y2="15"></line>
-<line x1="78" x2="78" y1="65" y2="28"></line>
-<line x1="82" x2="102" y1="75" y2="55"></line>
-</g>
-<circle cx="53" cy="92" fill="#ffffff" fill-opacity="0.9" r="4.5"></circle>
-<circle cx="67" cy="88" fill="#f0b323" r="5.5"></circle>
-<circle cx="60" cy="102" fill="#ffffff" fill-opacity="0.8" r="4"></circle>
-<circle cx="74" cy="98" fill="#ffffff" fill-opacity="0.6" r="3.5"></circle>
-</svg>
-</div>
-</div>
-<p class="hint">Alat bantu skrining awal. Bukan pengganti diagnosis dokter.</p>
-</div>
-    <button type="button" onclick="window.location.href='login.html'">Mulai Sekarang → </button>
+<section class="landing-page ossia-onboarding" aria-label="Perkenalan OSSIA">
+  <div class="onboarding-track" id="onboardingTrack">
+    <article class="onboarding-slide slide-one" aria-label="Slide 1">
+      <div class="onboarding-brand">
+        <span class="onboarding-logo">O</span><span>OSSIA</span>
+      </div>
+      <h1>Skrining Usia Tulang Karpal</h1>
+      <p class="lead">Unggah citra X-ray karpal, otomatisasi segmentasi Otsu, dan dapatkan rasio osifikasi dalam hitungan detik.</p>
+      <div class="hand-art" aria-hidden="true">
+        <svg viewBox="0 0 180 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="#bce6ce" stroke-opacity=".48" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M63 205 L63 160 L53 135 L48 91 Q47 82 54 81 Q61 80 63 89 L72 122 L67 58 Q66 47 74 47 Q82 47 83 58 L91 112 L91 34 Q91 23 99 23 Q107 23 107 35 L108 111 L117 49 Q119 39 126 42 Q133 44 131 54 L125 126 L145 100 Q152 92 158 98 Q164 104 157 112 L131 151 L128 205"/>
+            <path d="M65 159 L126 159 M70 137 L125 137 M76 115 L121 115"/>
+          </g>
+          <g fill="#d8f4e2" fill-opacity=".72">
+            <circle cx="70" cy="151" r="7"/><circle cx="88" cy="148" r="7"/><circle cx="106" cy="149" r="7"/><circle cx="122" cy="151" r="7"/>
+            <circle cx="79" cy="169" r="8"/><circle cx="99" cy="169" r="8"/><circle cx="116" cy="169" r="8"/>
+          </g>
+          <circle cx="100" cy="171" r="6" fill="#f0b323"/>
+        </svg>
+      </div>
+      <p class="disclaimer">Alat bantu skrining awal. Bukan pengganti diagnosis dokter.</p>
+    </article>
+    <article class="onboarding-slide slide-two" aria-label="Slide 2">
+      <div class="onboarding-brand">
+        <span class="onboarding-logo">O</span><span>OSSIA</span>
+      </div>
+      <div class="analysis-illustration" aria-hidden="true">
+        <div class="xray-card">
+          <svg viewBox="0 0 100 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#d9eee2" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M30 155 L30 112 L20 91 L15 57 M43 155 L43 104 L38 47 L37 22 M55 155 L57 103 L58 12 M67 155 L70 107 L79 31 M30 113 L69 113 M25 93 L72 93 M25 74 L75 74"/>
+              <path d="M70 110 L88 87"/>
+            </g>
+            <g fill="#b5d7c3">
+              <circle cx="32" cy="119" r="7"/><circle cx="48" cy="118" r="7"/><circle cx="63" cy="119" r="7"/>
+              <circle cx="39" cy="135" r="7"/><circle cx="55" cy="136" r="7"/><circle cx="68" cy="134" r="7"/>
+            </g>
+          </svg>
+        </div>
+        <div class="feature-chip chip-left"><b>◉</b><span>Segmentasi<br>Otsu</span></div>
+        <div class="feature-chip chip-right"><b>AI</b><span>Analisis<br>otomatis</span></div>
+        <div class="feature-chip chip-bottom"><b>▥</b><span>Rasio<br>osifikasi</span></div>
+      </div>
+      <h2>Proses Analisis Otomatis</h2>
+      <p class="lead">Citra X-ray diproses menggunakan segmentasi Otsu untuk membantu menghitung rasio osifikasi secara terstruktur.</p>
+      <div class="slide-dots" aria-label="Pilih slide">
+        <button class="slide-dot" type="button" data-slide="0" aria-label="Slide 1"></button>
+        <button class="slide-dot active" type="button" data-slide="1" aria-label="Slide 2"></button>
+      </div>
+    </article>
   </div>
-  <div class="landing-info">
-    <span class="eyebrow">OSSIA · RSUD HAJI</span>
-    <h2>Skrining usia tulang karpal lebih terstruktur</h2>
-    <p>Unggah citra X-ray karpal untuk membantu proses segmentasi dan perhitungan rasio osifikasi.</p>
-    <div class="feature-list">
-      <div><b>01</b><span><strong>Unggah citra</strong><small>Pilih citra X-ray untuk pemeriksaan.</small></span></div>
-      <div><b>02</b><span><strong>Analisis citra</strong><small>Siapkan proses segmentasi Otsu.</small></span></div>
-      <div><b>03</b><span><strong>Tinjau hasil</strong><small>Lihat ringkasan dan riwayat pemeriksaan.</small></span></div>
-    </div>
-    <p class="hint">Alat bantu skrining awal. Bukan pengganti diagnosis dokter.</p>
+
+  <div class="onboarding-bottom dark" id="onboardingBottom">
+    <button class="start-btn" type="button" onclick="window.location.href='login.html'">Mulai Sekarang <span aria-hidden="true">→</span></button>
   </div>
 </section>
-
-
-
-
-
+<script>
+(function () {
+  const track = document.getElementById('onboardingTrack');
+  const bottom = document.getElementById('onboardingBottom');
+  const dots = Array.from(document.querySelectorAll('.slide-dot'));
+  let current = 0, startX = 0, endX = 0;
+  function showSlide(index) {
+    current = Math.max(0, Math.min(1, index));
+    track.style.transform = current === 0 ? 'translateX(0)' : 'translateX(-50%)';
+    bottom.classList.toggle('dark', current === 0);
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
+  }
+  dots.forEach(dot => dot.addEventListener('click', () => showSlide(Number(dot.dataset.slide))));
+  track.addEventListener('touchstart', e => { startX = e.changedTouches[0].screenX; }, {passive:true});
+  track.addEventListener('touchend', e => {
+    endX = e.changedTouches[0].screenX;
+    if (startX - endX > 40) showSlide(1);
+    else if (endX - startX > 40) showSlide(0);
+  }, {passive:true});
+  let pointerDown = false;
+  track.addEventListener('pointerdown', e => { pointerDown = true; startX = e.clientX; });
+  track.addEventListener('pointerup', e => {
+    if (!pointerDown) return;
+    pointerDown = false; endX = e.clientX;
+    if (startX - endX > 40) showSlide(1);
+    else if (endX - startX > 40) showSlide(0);
+  });
+  showSlide(0);
+})();
+</script>
 </body>
 </html>
