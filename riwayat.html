@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/riwayat.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="riwayat.css">
 </head>
 <body>
 <section class="ossia-mobile-page history-page" id="view-riwayat">
@@ -47,7 +47,7 @@
   window.bukaHalaman = function (target) {
     const file = map[target] || "landing.html";
     const inPagesFolder = /\/pages\//i.test(window.location.pathname.replace(/\\/g, "/"));
-    window.location.href = inPagesFolder ? file : ("pages/" + file);
+    window.location.href = inPagesFolder ? file : ("" + file);
   };
   window.showOssiaToast = function (message) {
     let toast = document.getElementById("ossia-global-toast");
@@ -83,6 +83,6 @@
 })();
 </script>
 
-<script src="../js/riwayat.js"></script>
+<script src="riwayat.js"></script>
 </body>
 </html>

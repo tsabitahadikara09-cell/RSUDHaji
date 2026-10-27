@@ -1,17 +1,12 @@
-# OSSIA — versi buka langsung (tanpa Live Server)
+# OSSIA RSUD Haji — versi kompatibel folder root
 
-## Cara kerja
-- Klik dua kali `index.html`: langsung menampilkan Landing Page.
-- Tombol Mulai / Masuk membuka `pages/login.html`.
-- Tombol Masuk membuka `pages/home.html`.
-- Navigasi bawah berpindah ke Home, Riwayat, Chat, dan Me.
-- Setiap halaman HTML berdiri sendiri; perpindahan memakai link lokal, bukan `fetch()`.
+Semua file disimpan langsung di satu folder supaya cocok dengan struktur proyek RSUDHaji yang memiliki `index.html`, `style.css`, `app.js`, dll. di root.
 
-## Menjalankan
-Ekstrak ZIP, lalu klik dua kali `index.html`. Live Server tetap boleh digunakan, tetapi tidak wajib.
+## Cara pakai
+1. Backup folder RSUDHaji yang lama.
+2. Salin semua file dari folder hasil ekstrak ZIP ini ke folder RSUDHaji.
+3. Pilih Replace untuk file yang memang sama namanya.
+4. Klik dua kali `index.html`.
 
-## Status
-- Home: UI tes upload file dan pratinjau.
-- Riwayat: pencarian, filter, dan detail pemeriksaan data contoh.
-- Landing, Login, Chat, Me: UI saja.
-- Belum ada autentikasi backend, ROI, segmentasi, rasio osifikasi, atau validasi klinis.
+File HTML halaman: `landing.html`, `login.html`, `home.html`, `riwayat.html`, `chat.html`, `me.html`.
+CSS dan JS untuk Home/Riwayat juga berada di folder yang sama.
