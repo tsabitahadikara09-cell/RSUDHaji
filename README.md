@@ -1,17 +1,17 @@
-# OSSIA — Mobile Phone Frame + Bottom Navigation Fix
+# OSSIA — Header Seragam di Semua Halaman Utama
 
-Perbaikan ini menampilkan navigasi bawah **Home / Riwayat / Chat / Me** pada setiap halaman aplikasi tersebut. Tombol navigasi benar-benar membuka file HTML yang sesuai:
-- Home → `home.html`
-- Riwayat → `riwayat.html`
-- Chat → `chat.html`
-- Me → `me.html`
+Header Home, Riwayat, Chat, dan Me disamakan dengan referensi:
+- logo kotak hijau dengan huruf O dan titik kuning,
+- tulisan OSSIA dan RSUD Haji,
+- tombol notifikasi dengan titik merah di kanan.
 
-Semua halaman tetap dalam bingkai HP di tengah layar laptop. Saat dibuka di HP, tampilan mengikuti lebar layar.
+Chat dan Me juga sudah menggunakan layout mobile OSSIA yang konsisten dengan Home/Riwayat. Navigasi bawah membuka file HTML masing-masing.
 
 ## Cara memasang
 1. Backup folder RSUDHaji.
 2. Ekstrak ZIP ini.
-3. Salin file di dalam folder `OSSIA-Mobile-Phone-Frame` ke folder `RSUDHaji` dan replace file yang sama.
-4. Buka `index.html`.
+3. Salin semua file ke folder RSUDHaji dan replace file yang sama.
+4. Pastikan `mobile-pages.css` ikut disalin.
+5. Buka index.html, lalu navigasikan ke Home/Riwayat/Chat/Me.
 
-Landing dan Login tidak menampilkan navigasi bawah; setelah masuk ke Home, navigasi bawah muncul di semua halaman utama.
+Home: uji upload dan pratinjau. Riwayat: pencarian, filter, detail data demo. Chat: balasan demo. Me: menu profil UI demo. Belum ada autentikasi backend, analisis ROI, segmentasi, atau validasi klinis.

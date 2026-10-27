@@ -1,107 +1,72 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0a4f2b">
-<title>OSSIA | Profil</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div id="view-me" class="shell"><aside class="sidebar">
-<div class="brand">
-<div style="background: #ffffff; width: 34px; height: 34px; border-radius: 8px; display: grid; place-items: center; color: var(--rs-green-dark); font-weight: 800; font-size: 1.2rem; font-family: var(--font-head);">O</div>
-<div>OSSIA</div>
-</div>
-<nav class="nav">
-<button onclick="bukaHalaman('home')">🏠 Home (Dashboard)</button>
-<button aria-current="page" onclick="bukaHalaman('me')">👤 Me (Profil &amp; Riwayat)</button>
-<button onclick="bukaHalaman('chat')">💬 Chatbot Edukasi</button>
-</nav>
-<div class="sidebar-foot">
-<strong>An. Arka</strong>
-<span style="display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 10px;">Pasien Anak</span>
-<button class="btn small block" onclick="bukaHalaman('login')" style="background: transparent; border: 1px solid rgba(255,255,255,0.2);">Keluar</button>
-</div>
-</aside><main>
-      <div class="page-head"><h2>Profil Pasien</h2><p>Kelola informasi akun pasien Anda.</p></div>
-      <div class="panel" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
-<div style="display: flex; align-items: center; gap: 1.5rem;">
-<div style="width: 75px; height: 75px; border-radius: 50%; background: var(--rs-green-soft); display: grid; place-items: center; font-size: 2.2rem; border: 2px solid var(--rs-green);">👦</div>
-<div>
-<h3 style="font-size: 1.4rem; margin-bottom: 0.2rem; color: var(--ink);">An. Arka Pratama</h3>
-<p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 0.4rem;">No. Rekam Medis: RM-09921</p>
-<span style="display: inline-block; background: #fdf0d4; color: #7d5006; padding: 4px 12px; border-radius: 99px; font-size: 0.78rem; font-weight: 700;">Pasien RSUD Haji</span>
-</div>
-</div>
-<div>
-<button class="btn secondary small">Edit Profil</button>
-</div>
-</div>
-    </main></div>
-
-
-
-
-
+<html lang="id"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a4f2b"><title>OSSIA | Profil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="home.css"><link rel="stylesheet" href="mobile-pages.css">
+</head><body>
+<section class="ossia-mobile-page om-me-page" id="view-me">
+  <header class="om-topbar">
+    <div class="om-brand"><span class="om-logo">O<i></i></span><span>OSSIA<small>RSUD Haji</small></span></div>
+    <button class="om-icon-btn" id="meNotifications" type="button" aria-label="Notifikasi" title="Notifikasi">
+      <svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+        <path d="M10 21h4"></path>
+      </svg><b></b>
+    </button>
+  </header>
+  <main class="om-content">
+    <section class="om-page-intro">
+      <p class="om-eyebrow">AKUN PASIEN</p>
+      <h1>Profil</h1>
+      <p>Informasi akun dan pengaturan pasien.</p>
+    </section>
+    <section class="om-card om-profile-card">
+      <div class="om-profile-avatar">👦</div>
+      <div class="om-profile-main"><strong>An. Arka Pratama</strong><span>Pasien Anak</span><small>No. Rekam Medis: RM-100010</small></div>
+      <span class="om-profile-badge">Pasien</span>
+    </section>
+    <section class="om-profile-menu">
+      <button type="button" onclick="showOssiaToast('Menu Data Pribadi masih berupa UI demo.')"><span class="om-profile-menu-icon">♙</span><span><strong>Data Pribadi</strong><small>Informasi pasien</small></span><b>›</b></button>
+      <button type="button" onclick="bukaHalaman('riwayat')"><span class="om-profile-menu-icon">▤</span><span><strong>Riwayat Pemeriksaan</strong><small>Lihat catatan pemeriksaan</small></span><b>›</b></button>
+      <button type="button" onclick="showOssiaToast('Pengaturan akan diaktifkan pada tahap berikutnya.')"><span class="om-profile-menu-icon">⚙</span><span><strong>Pengaturan</strong><small>Preferensi akun</small></span><b>›</b></button>
+      <button type="button" onclick="showOssiaToast('Bantuan OSSIA masih berupa UI demo.')"><span class="om-profile-menu-icon">?</span><span><strong>Bantuan</strong><small>Panduan penggunaan OSSIA</small></span><b>›</b></button>
+    </section>
+    <button class="om-logout-btn" type="button" onclick="bukaHalaman('login')"><span>⇥</span> Keluar</button>
+    <p class="om-disclaimer">Data profil pada tampilan ini merupakan data contoh untuk rancangan antarmuka.</p>
+  </main>
+</section>
 
 <script>
 (function () {
-  const pages = {
-    landing: "landing.html",
-    login: "login.html",
-    home: "home.html",
-    dashboard: "home.html",
-    riwayat: "riwayat.html",
-    chat: "chat.html",
-    chatbot: "chat.html",
-    me: "me.html"
-  };
-
-  window.bukaHalaman = function (target) {
-    window.location.href = pages[target] || "index.html";
-  };
-
+  const pages = { landing:"landing.html", login:"login.html", home:"home.html", dashboard:"home.html",
+    riwayat:"riwayat.html", chat:"chat.html", chatbot:"chat.html", me:"me.html" };
+  window.bukaHalaman = function (target) { window.location.href = pages[target] || "index.html"; };
   window.showOssiaToast = function (message) {
     let toast = document.getElementById("ossia-global-toast");
     if (!toast) {
       toast = document.createElement("div");
       toast.id = "ossia-global-toast";
-      toast.className = "toast";
+      toast.className = "om-toast";
       document.body.appendChild(toast);
     }
     toast.textContent = message;
     toast.classList.add("show");
     window.setTimeout(() => toast.classList.remove("show"), 2500);
   };
-
   document.addEventListener("DOMContentLoaded", function () {
-    const file = window.location.pathname.split("/").pop().toLowerCase();
-    const current = file.replace(".html", "");
-    if (!["home", "riwayat", "chat", "me"].includes(current)) return;
-
-    // Avoid duplicate nav if script is included twice.
-    if (document.querySelector(".mobile-nav")) return;
-
+    const current = location.pathname.split("/").pop().toLowerCase().replace(".html", "");
+    if (!["home", "riwayat", "chat", "me"].includes(current) || document.querySelector(".mobile-nav")) return;
+    const items = [["home","⌂","Home"],["riwayat","▤","Riwayat"],["chat","▢","Chat"],["me","♙","Me"]];
     const nav = document.createElement("nav");
     nav.className = "mobile-nav";
     nav.setAttribute("aria-label", "Navigasi utama");
-    const items = [
-      ["home", "⌂", "Home"],
-      ["riwayat", "▤", "Riwayat"],
-      ["chat", "▢", "Chat"],
-      ["me", "♙", "Me"]
-    ];
     nav.innerHTML = items.map(([id, icon, label]) =>
-      `<button type="button" class="${current === id ? "active" : ""}" aria-label="${label}" ${current === id ? 'aria-current="page"' : ""} onclick="bukaHalaman('${id}')"><span aria-hidden="true">${icon}</span><span>${label}</span></button>`
+      `<button type="button" class="${current===id?"active":""}" aria-label="${label}" ${current===id?'aria-current="page"':""} onclick="bukaHalaman('${id}')"><span aria-hidden="true">${icon}</span><span>${label}</span></button>`
     ).join("");
     document.body.appendChild(nav);
   });
 })();
 </script>
-
-</body>
-</html>
+</body></html>
