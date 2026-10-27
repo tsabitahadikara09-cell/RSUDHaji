@@ -64,52 +64,6 @@
 </section>
 
 
-<script>
-(function () {
-  const map = {
-    landing: "landing.html", login: "login.html",
-    home: "home.html", dashboard: "home.html",
-    riwayat: "riwayat.html", chat: "chat.html",
-    chatbot: "chat.html", me: "me.html"
-  };
-  window.bukaHalaman = function (target) {
-    const file = map[target] || "landing.html";
-    const inPagesFolder = /\/pages\//i.test(window.location.pathname.replace(/\\/g, "/"));
-    window.location.href = inPagesFolder ? file : ("" + file);
-  };
-  window.showOssiaToast = function (message) {
-    let toast = document.getElementById("ossia-global-toast");
-    if (!toast) {
-      toast = document.createElement("div");
-      toast.id = "ossia-global-toast";
-      toast.className = "toast";
-      document.body.appendChild(toast);
-    }
-    toast.textContent = message;
-    toast.classList.add("show");
-    clearTimeout(window.__ossiaToastTimer);
-    window.__ossiaToastTimer = setTimeout(() => toast.classList.remove("show"), 2500);
-  };
-  document.addEventListener("DOMContentLoaded", function () {
-    if (/\/(home|riwayat|chat|me)\.html$/i.test(window.location.pathname.replace(/\\/g, "/"))) {
-      const current = window.location.pathname.split("/").pop().replace(".html", "");
-      const nav = document.createElement("nav");
-      nav.className = "mobile-nav";
-      nav.setAttribute("aria-label", "Navigasi utama");
-      const items = [
-        ["home", "⌂", "Home"],
-        ["riwayat", "▤", "Riwayat"],
-        ["chat", "▢", "Chat"],
-        ["me", "♙", "Me"]
-      ];
-      nav.innerHTML = items.map(([id, icon, label]) =>
-        `<button type="button" class="${current === id ? "active" : ""}" onclick="bukaHalaman('${id}')"><span aria-hidden="true">${icon}</span><span>${label}</span></button>`
-      ).join("");
-      document.body.appendChild(nav);
-    }
-  });
-})();
-</script>
 
 
 </body>

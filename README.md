@@ -1,13 +1,17 @@
-# OSSIA — Mobile UI Frame
+# OSSIA — Mobile Phone Frame + Bottom Navigation Fix
 
-Semua halaman ditampilkan sebagai layout aplikasi HP berukuran sekitar 390 x 844 px meskipun `index.html` dibuka melalui laptop. Di HP, halaman otomatis memakai lebar layar penuh.
+Perbaikan ini menampilkan navigasi bawah **Home / Riwayat / Chat / Me** pada setiap halaman aplikasi tersebut. Tombol navigasi benar-benar membuka file HTML yang sesuai:
+- Home → `home.html`
+- Riwayat → `riwayat.html`
+- Chat → `chat.html`
+- Me → `me.html`
 
-## Cara menjalankan
-1. Ekstrak ZIP.
-2. Salin file-file ke folder proyek RSUDHaji (backup dulu file lama).
-3. Klik dua kali `index.html`.
-4. Landing → Mulai Sekarang → Login → Masuk → Home.
-5. Home, Riwayat, Chat, dan Me menggunakan navigasi bawah.
+Semua halaman tetap dalam bingkai HP di tengah layar laptop. Saat dibuka di HP, tampilan mengikuti lebar layar.
 
-## Status logika
-Home memiliki tes upload/pratinjau file. Riwayat memiliki pencarian, filter, dan detail demo. Landing, Login, Chat, dan Me masih UI; login bukan autentikasi backend. Belum ada ROI, segmentasi, rasio osifikasi, atau validasi klinis.
+## Cara memasang
+1. Backup folder RSUDHaji.
+2. Ekstrak ZIP ini.
+3. Salin file di dalam folder `OSSIA-Mobile-Phone-Frame` ke folder `RSUDHaji` dan replace file yang sama.
+4. Buka `index.html`.
+
+Landing dan Login tidak menampilkan navigasi bawah; setelah masuk ke Home, navigasi bawah muncul di semua halaman utama.
