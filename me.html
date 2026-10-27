@@ -71,7 +71,7 @@
     window.__ossiaToastTimer = setTimeout(() => toast.classList.remove("show"), 2500);
   };
   document.addEventListener("DOMContentLoaded", function () {
-    if (/\/pages\/(home|riwayat|chat|me)\.html$/i.test(window.location.pathname.replace(/\\/g, "/"))) {
+    if (/\/(home|riwayat|chat|me)\.html$/i.test(window.location.pathname.replace(/\\/g, "/"))) {
       const current = window.location.pathname.split("/").pop().replace(".html", "");
       const nav = document.createElement("nav");
       nav.className = "mobile-nav";

@@ -243,3 +243,174 @@ body { padding-bottom: 76px; }
   body { padding-bottom: 0; }
   .mobile-nav { left: 50%; right: auto; transform: translateX(-50%); width: min(520px, 100%); border: 1px solid var(--line); border-bottom: 0; border-radius: 16px 16px 0 0; }
 }
+
+
+
+/* =========================================================
+   OSSIA MOBILE APP FRAME
+   Keep a phone-sized layout on desktop/laptop as requested.
+   ========================================================= */
+html { min-width: 0 !important; min-height: 100%; background: #e9efeb; }
+body {
+  min-width: 0 !important;
+  min-height: 100dvh;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden !important;
+  background:
+    radial-gradient(ellipse at top, #f8fbf9 0%, #e8efea 70%, #e3ebe5 100%);
+}
+body > .landing-page,
+body > .auth-page,
+body > .ossia-mobile-page,
+body > .shell,
+body > #view-me,
+body > #view-chatbot {
+  width: min(390px, 100vw) !important;
+  height: min(844px, 100dvh) !important;
+  min-height: 0 !important;
+  max-height: 100dvh !important;
+  margin: auto !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  position: relative;
+  flex: 0 0 auto;
+  background: #f4f8f5;
+  border: 1px solid rgba(10,79,43,.12);
+  border-radius: 34px;
+  box-shadow: 0 24px 70px rgba(13, 48, 29, .20), 0 0 0 7px rgba(255,255,255,.72);
+  scrollbar-width: thin;
+  scrollbar-color: #c6d8cc transparent;
+}
+body > .landing-page {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  background: #f4f8f5 !important;
+}
+body > .landing-page .landing-hero {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: auto !important;
+  flex: 0 0 auto;
+}
+body > .landing-page .login-hero {
+  width: 100% !important;
+  min-height: auto !important;
+  padding: 1.35rem 1.25rem 1.5rem !important;
+  border-radius: 0 !important;
+  justify-content: flex-start !important;
+  background:
+    radial-gradient(circle at 90% 8%, rgba(39,133,85,.42), transparent 30%),
+    linear-gradient(145deg, #07502d, #063e25) !important;
+}
+body > .landing-page .login-hero h1 {
+  font-size: 2rem !important;
+  line-height: 1.12 !important;
+  margin: 1.5rem 0 .8rem !important;
+}
+body > .landing-page .login-hero p { font-size: .88rem !important; line-height: 1.6; }
+body > .landing-page .landing-info {
+  width: 100% !important;
+  min-width: 0 !important;
+  padding: 1.35rem 1.2rem 1.8rem !important;
+  flex: 1 0 auto;
+}
+body > .landing-page .landing-info h2 { font-size: 1.3rem !important; }
+body > .landing-page .landing-info p { font-size: .85rem; }
+body > .landing-page .landing-cta,
+body > .landing-page button {
+  max-width: 100%;
+}
+body > .auth-page {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+  padding: 4.5rem 1rem 1.5rem !important;
+  background: #f4f8f5 !important;
+}
+body > .auth-page .back-link { top: 1rem !important; left: 1rem !important; }
+body > .auth-page .auth-brand { justify-content: center; margin: 0 auto 1.5rem !important; }
+body > .auth-page .login-form-wrap { width: 100% !important; padding: 0 !important; display: block !important; }
+body > .auth-page .login-card { width: 100% !important; max-width: none !important; padding: 1.35rem !important; border-radius: 22px !important; }
+body > .ossia-mobile-page {
+  max-width: none !important;
+  width: min(390px, 100vw) !important;
+  padding-bottom: 86px !important;
+  border-radius: 34px;
+  background: #f4f8f5;
+}
+body > .ossia-mobile-page .om-content { padding: 17px 13px 26px !important; }
+body > .ossia-mobile-page .om-topbar { height: 62px !important; padding: 0 14px !important; }
+body > .ossia-mobile-page .om-welcome h1 { font-size: 1.55rem !important; }
+body > .ossia-mobile-page .om-section-title { gap: 8px; }
+body > .ossia-mobile-page .om-section-title h2 { font-size: 1.05rem; }
+body > .ossia-mobile-page .om-dropzone { min-height: 145px; }
+body > .shell,
+body > #view-me,
+body > #view-chatbot {
+  display: block !important;
+  padding: 0 0 78px !important;
+  background: #f4f8f5 !important;
+}
+body > .shell .sidebar,
+body > #view-me .sidebar,
+body > #view-chatbot .sidebar { display: none !important; }
+body > .shell main,
+body > #view-me main,
+body > #view-chatbot main {
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 100% !important;
+  padding: 1rem .85rem 1.25rem !important;
+  overflow: visible !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+body > #view-chatbot main { min-height: 100% !important; }
+body > .shell .panel,
+body > #view-me .panel,
+body > #view-chatbot .panel { min-width: 0 !important; width: 100%; }
+body > .shell .stats,
+body > #view-me .stats,
+body > #view-chatbot .stats { grid-template-columns: minmax(0, 1fr) !important; }
+.mobile-nav {
+  position: fixed !important;
+  z-index: 999 !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: max(0px, calc((100dvh - 844px) / 2)) !important;
+  transform: translateX(-50%) !important;
+  width: min(390px, 100vw) !important;
+  border: 1px solid #dce9e1 !important;
+  border-bottom: 0 !important;
+  border-radius: 0 0 34px 34px !important;
+  padding: .35rem .3rem max(.35rem, env(safe-area-inset-bottom)) !important;
+  box-shadow: 0 -5px 18px rgba(10,79,43,.07) !important;
+}
+.toast, #ossia-global-toast { z-index: 1200 !important; }
+@media (max-width: 430px) {
+  body { align-items: stretch; background: #f4f8f5; }
+  body > .landing-page,
+  body > .auth-page,
+  body > .ossia-mobile-page,
+  body > .shell,
+  body > #view-me,
+  body > #view-chatbot {
+    width: 100vw !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    border-radius: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+  .mobile-nav { bottom: 0 !important; border-radius: 0 !important; }
+}

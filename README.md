@@ -1,12 +1,13 @@
-# OSSIA RSUD Haji — versi kompatibel folder root
+# OSSIA — Mobile UI Frame
 
-Semua file disimpan langsung di satu folder supaya cocok dengan struktur proyek RSUDHaji yang memiliki `index.html`, `style.css`, `app.js`, dll. di root.
+Semua halaman ditampilkan sebagai layout aplikasi HP berukuran sekitar 390 x 844 px meskipun `index.html` dibuka melalui laptop. Di HP, halaman otomatis memakai lebar layar penuh.
 
-## Cara pakai
-1. Backup folder RSUDHaji yang lama.
-2. Salin semua file dari folder hasil ekstrak ZIP ini ke folder RSUDHaji.
-3. Pilih Replace untuk file yang memang sama namanya.
-4. Klik dua kali `index.html`.
+## Cara menjalankan
+1. Ekstrak ZIP.
+2. Salin file-file ke folder proyek RSUDHaji (backup dulu file lama).
+3. Klik dua kali `index.html`.
+4. Landing → Mulai Sekarang → Login → Masuk → Home.
+5. Home, Riwayat, Chat, dan Me menggunakan navigasi bawah.
 
-File HTML halaman: `landing.html`, `login.html`, `home.html`, `riwayat.html`, `chat.html`, `me.html`.
-CSS dan JS untuk Home/Riwayat juga berada di folder yang sama.
+## Status logika
+Home memiliki tes upload/pratinjau file. Riwayat memiliki pencarian, filter, dan detail demo. Landing, Login, Chat, dan Me masih UI; login bukan autentikasi backend. Belum ada ROI, segmentasi, rasio osifikasi, atau validasi klinis.

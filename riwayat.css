@@ -48,3 +48,9 @@
 .om-detail-explanation p { margin:5px 0 0; color:#6c5a40; }
 @media(min-width:700px) { .history-page .om-content { max-width:1000px; } .om-history-card { padding:16px; } }
 @media(max-width:360px) { .om-history-top { flex-wrap:wrap; } .om-history-top .om-status { margin-left:57px; } .om-history-bottom { align-items:flex-start; flex-direction:column; } }
+
+/* Keep this page in the centered phone frame on laptop too. */
+body > .ossia-mobile-page { width: min(390px, 100vw) !important; max-width: none !important; }
+@media (min-width: 700px) {
+  body > .history-page .om-content { max-width: none !important; }
+}

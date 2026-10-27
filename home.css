@@ -83,3 +83,9 @@
   .om-metrics>div { padding:9px 7px; }
   .om-metrics strong { font-size:1.15rem; }
 }
+
+/* Keep this page in the centered phone frame on laptop too. */
+body > .ossia-mobile-page { width: min(390px, 100vw) !important; max-width: none !important; }
+@media (min-width: 700px) {
+  body > .history-page .om-content { max-width: none !important; }
+}
