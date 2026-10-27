@@ -222,3 +222,24 @@ input, button, textarea, select { max-width: 100%; }
 @media (min-width: 761px) {
   .mobile-nav { display: none !important; }
 }
+
+/* Standalone multi-page navigation */
+.mobile-nav {
+  position: fixed; z-index: 100; left: 0; right: 0; bottom: 0;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: .45rem .35rem calc(.45rem + env(safe-area-inset-bottom));
+  background: rgba(255,255,255,.97); border-top: 1px solid var(--line);
+  box-shadow: 0 -4px 20px rgba(10,79,43,.06); backdrop-filter: blur(14px);
+}
+.mobile-nav button {
+  min-width: 0; min-height: 48px; border: 0; border-radius: 10px;
+  background: transparent; color: #7d8e83; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: .18rem; padding: .3rem .1rem; font-size: .68rem;
+}
+.mobile-nav button.active { color: var(--rs-green); font-weight: 800; background: #f0f8f3; }
+.mobile-nav button span:first-child { font-size: 1.15rem; line-height: 1.1; }
+body { padding-bottom: 76px; }
+@media (min-width: 761px) {
+  body { padding-bottom: 0; }
+  .mobile-nav { left: 50%; right: auto; transform: translateX(-50%); width: min(520px, 100%); border: 1px solid var(--line); border-bottom: 0; border-radius: 16px 16px 0 0; }
+}

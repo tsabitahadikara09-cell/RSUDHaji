@@ -1,23 +1,166 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0a4f2b">
-  <title>OSSIA | Skrining Usia Tulang</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a4f2b">
+<title>OSSIA | Skrining Usia Tulang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div id="app-view" aria-live="polite">
-    <div class="loading-screen">Memuat OSSIA...</div>
+
+<section class="landing-page">
+  <div class="landing-hero">
+    <div class="login-hero">
+<div class="brand" style="display: flex; align-items: center; gap: 0.8rem;">
+<div style="background: #ffffff; width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; color: var(--rs-green-dark); font-weight: 800; font-size: 1.6rem; position: relative; font-family: var(--font-head);">
+          O
+          <span style="position: absolute; top: -4px; right: -4px; background: #f0b323; width: 14px; height: 14px; border-radius: 50%; border: 3px solid var(--rs-green-dark);"></span>
+</div>
+<span style="font-size: 2rem; letter-spacing: 1px; font-weight: 800; color: #ffffff;">OSSIA</span>
+</div>
+<div style="margin-top: 2rem;">
+<h1>Skrining Usia Tulang Karpal</h1>
+<p>Unggah citra X-ray karpal, otomatisasi segmentasi Otsu, dan dapatkan rasio osifikasi dalam hitungan detik.</p>
+<div style="margin-top: 3rem; display: flex; justify-content: center; align-items: center; padding: 1rem 0;">
+<svg fill="none" height="140" viewbox="0 0 120 120" width="140" xmlns="http://www.w3.org/2000/svg">
+<g stroke="rgba(255,255,255,0.15)" stroke-linecap="round" stroke-linejoin="round" stroke-width="14">
+<line x1="48" x2="48" y1="120" y2="100"></line>
+<line x1="72" x2="72" y1="120" y2="100"></line>
+<line x1="42" x2="42" y1="85" y2="65"></line>
+<line x1="54" x2="54" y1="90" y2="60"></line>
+<line x1="66" x2="66" y1="90" y2="60"></line>
+<line x1="78" x2="78" y1="85" y2="65"></line>
+<line x1="42" x2="42" y1="65" y2="40"></line>
+<line x1="54" x2="54" y1="60" y2="22"></line>
+<line x1="66" x2="66" y1="60" y2="15"></line>
+<line x1="78" x2="78" y1="65" y2="28"></line>
+<line x1="82" x2="102" y1="75" y2="55"></line>
+</g>
+<circle cx="53" cy="92" fill="#ffffff" fill-opacity="0.9" r="4.5"></circle>
+<circle cx="67" cy="88" fill="#f0b323" r="5.5"></circle>
+<circle cx="60" cy="102" fill="#ffffff" fill-opacity="0.8" r="4"></circle>
+<circle cx="74" cy="98" fill="#ffffff" fill-opacity="0.6" r="3.5"></circle>
+</svg>
+</div>
+</div>
+<p class="hint">Alat bantu skrining awal. Bukan pengganti diagnosis dokter.</p>
+</div>
+    <button class="btn block landing-cta" onclick="bukaHalaman('login')">Mulai Sekarang →</button>
   </div>
-  <script src="js/chatbot.js"></script>
-  <script src="js/logic.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/chatbot.js"></script>
-  <script src="js/logic.js"></script>
+  <div class="landing-info">
+    <span class="eyebrow">OSSIA · RSUD HAJI</span>
+    <h2>Skrining usia tulang karpal lebih terstruktur</h2>
+    <p>Unggah citra X-ray karpal untuk membantu proses segmentasi dan perhitungan rasio osifikasi.</p>
+    <div class="feature-list">
+      <div><b>01</b><span><strong>Unggah citra</strong><small>Pilih citra X-ray untuk pemeriksaan.</small></span></div>
+      <div><b>02</b><span><strong>Analisis citra</strong><small>Siapkan proses segmentasi Otsu.</small></span></div>
+      <div><b>03</b><span><strong>Tinjau hasil</strong><small>Lihat ringkasan dan riwayat pemeriksaan.</small></span></div>
+    </div>
+    <p class="hint">Alat bantu skrining awal. Bukan pengganti diagnosis dokter.</p>
+  </div>
+</section>
+
+
+<script>
+(function () {
+  const map = {
+    landing: "landing.html", login: "login.html",
+    home: "home.html", dashboard: "home.html",
+    riwayat: "riwayat.html", chat: "chat.html",
+    chatbot: "chat.html", me: "me.html"
+  };
+  window.bukaHalaman = function (target) {
+    const file = map[target] || "landing.html";
+    const inPagesFolder = /\/pages\//i.test(window.location.pathname.replace(/\\/g, "/"));
+    window.location.href = inPagesFolder ? file : ("pages/" + file);
+  };
+  window.showOssiaToast = function (message) {
+    let toast = document.getElementById("ossia-global-toast");
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.id = "ossia-global-toast";
+      toast.className = "toast";
+      document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.classList.add("show");
+    clearTimeout(window.__ossiaToastTimer);
+    window.__ossiaToastTimer = setTimeout(() => toast.classList.remove("show"), 2500);
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    if (/\/pages\/(home|riwayat|chat|me)\.html$/i.test(window.location.pathname.replace(/\\/g, "/"))) {
+      const current = window.location.pathname.split("/").pop().replace(".html", "");
+      const nav = document.createElement("nav");
+      nav.className = "mobile-nav";
+      nav.setAttribute("aria-label", "Navigasi utama");
+      const items = [
+        ["home", "⌂", "Home"],
+        ["riwayat", "▤", "Riwayat"],
+        ["chat", "▢", "Chat"],
+        ["me", "♙", "Me"]
+      ];
+      nav.innerHTML = items.map(([id, icon, label]) =>
+        `<button type="button" class="${current === id ? "active" : ""}" onclick="bukaHalaman('${id}')"><span aria-hidden="true">${icon}</span><span>${label}</span></button>`
+      ).join("");
+      document.body.appendChild(nav);
+    }
+  });
+})();
+</script>
+
+
+
+
+<script>
+(function () {
+  const map = {
+    landing: "landing.html", login: "login.html",
+    home: "home.html", dashboard: "home.html",
+    riwayat: "riwayat.html", chat: "chat.html",
+    chatbot: "chat.html", me: "me.html"
+  };
+  window.bukaHalaman = function (target) {
+    const file = map[target] || "landing.html";
+    const inPagesFolder = /\/pages\//i.test(window.location.pathname.replace(/\\/g, "/"));
+    window.location.href = inPagesFolder ? file : ("pages/" + file);
+  };
+  window.showOssiaToast = function (message) {
+    let toast = document.getElementById("ossia-global-toast");
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.id = "ossia-global-toast";
+      toast.className = "toast";
+      document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.classList.add("show");
+    clearTimeout(window.__ossiaToastTimer);
+    window.__ossiaToastTimer = setTimeout(() => toast.classList.remove("show"), 2500);
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    if (/\/pages\/(home|riwayat|chat|me)\.html$/i.test(window.location.pathname.replace(/\\/g, "/"))) {
+      const current = window.location.pathname.split("/").pop().replace(".html", "");
+      const nav = document.createElement("nav");
+      nav.className = "mobile-nav";
+      nav.setAttribute("aria-label", "Navigasi utama");
+      const items = [
+        ["home", "⌂", "Home"],
+        ["riwayat", "▤", "Riwayat"],
+        ["chat", "▢", "Chat"],
+        ["me", "♙", "Me"]
+      ];
+      nav.innerHTML = items.map(([id, icon, label]) =>
+        `<button type="button" class="${current === id ? "active" : ""}" onclick="bukaHalaman('${id}')"><span aria-hidden="true">${icon}</span><span>${label}</span></button>`
+      ).join("");
+      document.body.appendChild(nav);
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
