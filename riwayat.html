@@ -1,0 +1,22 @@
+<section class="ossia-mobile-page history-page" id="view-riwayat">
+  <header class="om-topbar">
+    <div class="om-brand"><span class="om-logo">O<i></i></span><span>OSSIA<small>RSUD Haji</small></span></div>
+    <button class="om-icon-btn" id="historyFilterJump" aria-label="Filter riwayat">☷</button>
+  </header>
+  <main class="om-content">
+    <section class="om-page-intro"><p class="om-eyebrow">ARSIP PEMERIKSAAN</p><h1>Riwayat pemeriksaan</h1><p>Lihat kembali ringkasan pemeriksaan sebelumnya.</p></section>
+    <section class="om-history-summary">
+      <div><span>Total pemeriksaan</span><strong id="historyTotal">4</strong></div><i></i><div><span>Perlu perhatian</span><strong class="om-amber-text" id="historyAttention">2</strong></div>
+    </section>
+    <label class="om-search"><span>⌕</span><input id="historySearch" type="search" placeholder="Cari tanggal, ID, atau status..."><button id="historyClear" type="button" hidden aria-label="Hapus pencarian">×</button></label>
+    <div class="om-filter-row" id="historyFilters">
+      <button class="selected" data-history-filter="all">Semua</button><button data-history-filter="attention">Perlu Perhatian</button><button data-history-filter="normal">Normal</button>
+    </div>
+    <section class="om-history-list" id="historyList" aria-live="polite"></section>
+    <p class="om-disclaimer">Riwayat pada halaman ini adalah data contoh. Data riil dan interpretasi klinis akan dihubungkan setelah validasi sistem dan dokter RSUD Haji.</p>
+  </main>
+  <dialog class="om-detail-dialog" id="historyDetailDialog">
+    <form method="dialog"><button class="om-dialog-close" aria-label="Tutup detail">×</button></form>
+    <div id="historyDetailContent"></div>
+  </dialog>
+</section>

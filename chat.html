@@ -1,0 +1,46 @@
+<div class="shell" id="view-chatbot">
+<aside class="sidebar">
+<div class="brand">
+<div style="background: #ffffff; width: 34px; height: 34px; border-radius: 8px; display: grid; place-items: center; color: var(--rs-green-dark); font-weight: 800; font-size: 1.2rem; font-family: var(--font-head);">O</div>
+<div>OSSIA</div>
+</div>
+<nav class="nav">
+<button onclick="bukaHalaman('dashboard')">🏠 Home (Dashboard)</button>
+<button onclick="bukaHalaman('me')">👤 Me (Profil &amp; Riwayat)</button>
+<button aria-current="page" onclick="bukaHalaman('chatbot')">💬 Chatbot Edukasi</button>
+</nav>
+<div class="sidebar-foot">
+<strong>An. Arka</strong>
+<span style="display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 10px;">Pasien Anak</span>
+<button class="btn small block" onclick="bukaHalaman('login')" style="background: transparent; border: 1px solid rgba(255,255,255,0.2);">Keluar</button>
+</div>
+</aside>
+<main style="display: flex; flex-direction: column; height: 100vh;">
+<!-- Header Ruang Chat (Menampilkan AI) -->
+<div class="panel" style="margin-bottom: 1rem; padding: 1rem 1.5rem; display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid var(--line);">
+<div style="width: 45px; height: 45px; border-radius: 50%; background: var(--rs-green-dark); display: grid; place-items: center; font-size: 1.5rem; border: 1px solid var(--rs-green);">🤖</div>
+<div>
+<strong style="font-size: 1.1rem; display: block; color: var(--ink);">AI Asisten OSSIA</strong>
+<span style="font-size: 0.85rem; color: var(--rs-green);">● Siap membantu analisis X-ray dan data medis</span>
+</div>
+</div>
+<!-- Kotak Chat Utama -->
+<div class="panel" style="flex: 1; display: flex; flex-direction: column; padding: 0; overflow: hidden; background: #fdfdfd;">
+<div id="chat-box" style="flex: 1; overflow-y: auto; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; background: var(--box);">
+<!-- Chat AI Awal -->
+<div style="display: flex; gap: 0.8rem; align-items: flex-end; max-width: 85%;">
+<div style="width: 32px; height: 32px; border-radius: 50%; background: var(--rs-green-dark); display: grid; place-items: center; font-size: 0.9rem;">🤖</div>
+<div style="background: #e5f5ec; color: var(--rs-green-dark); padding: 12px 16px; border-radius: 16px 16px 16px 4px; font-size: 0.95rem; border: 1px solid #c2e6d3; line-height: 1.5;">
+              Halo! Saya Asisten AI cerdas dari OSSIA.<br/>Anda bisa bertanya terkait informasi rekam medis, atau klik tombol 📎 di bawah untuk mengunggah gambar X-ray baru agar saya analisis menggunakan metode Otsu.
+            </div>
+</div>
+</div>
+<!-- Kolom Input Teks & Attachment -->
+<div style="padding: 1rem 1.5rem; border-top: 1px solid var(--line); background: #ffffff; display: flex; gap: 0.8rem; align-items: center;">
+<button class="btn secondary" onclick="simulasiUnggah()" style="border-radius: 50%; width: 45px; height: 45px; padding: 0; display: grid; place-items: center; font-size: 1.2rem;" title="Unggah X-ray">📎</button>
+<input id="chat-input" onkeypress="cekEnter(event)" placeholder="Ketik pertanyaan ke AI..." style="flex: 1; padding: 0.8rem 1rem; border: 1px solid var(--line); border-radius: 99px; font-size: 0.95rem; outline: none;" type="text"/>
+<button class="btn" onclick="kirimPesan()" style="border-radius: 99px; padding: 0.8rem 1.5rem;">Kirim</button>
+</div>
+</div>
+</main>
+</div>
