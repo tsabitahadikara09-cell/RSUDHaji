@@ -89,3 +89,12 @@ body > .ossia-mobile-page { width: min(390px, 100vw) !important; max-width: none
 @media (min-width: 700px) {
   body > .history-page .om-content { max-width: none !important; }
 }
+
+
+/* Empty state: no sample examination results are shown until a real result exists. */
+.om-empty-results { display:flex; flex-direction:column; align-items:center; text-align:center; padding:25px 18px; }
+.om-empty-icon { width:58px; height:58px; display:grid; place-items:center; border-radius:19px; margin-bottom:13px; color:var(--om-green); background:linear-gradient(135deg,#e2f4e9,#f4faf6); font-size:29px; }
+.om-empty-results h3 { margin:0 0 7px; color:var(--om-ink); font-size:.9rem; }
+.om-empty-results p { max-width:300px; margin:0 0 14px; color:var(--om-muted); font-size:.7rem; line-height:1.65; }
+.om-empty-link { border:1px solid #cfe6d7; border-radius:11px; padding:9px 12px; background:#f7fcf8; color:var(--om-green); font:700 .7rem 'Public Sans',sans-serif; cursor:pointer; }
+.om-empty-link:active { background:#e5f5ec; }

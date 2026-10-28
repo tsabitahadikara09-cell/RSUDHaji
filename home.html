@@ -15,12 +15,7 @@
 <section class="ossia-mobile-page home-page" id="view-dashboard">
   <header class="om-topbar">
     <div class="om-brand"><span class="om-logo">O<i></i></span><span>OSSIA<small>RSUD Haji</small></span></div>
-    <button class="om-icon-btn" id="homeNotifications" type="button" aria-label="Notifikasi" title="Notifikasi">
-      <svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
-        <path d="M10 21h4"></path>
-      </svg><b></b>
-    </button>
+    <button class="om-icon-btn" id="homeNotifications" aria-label="Notifikasi">♧<b></b></button>
   </header>
 
   <main class="om-content">
@@ -48,21 +43,15 @@
     </section>
 
     <section class="om-section">
-      <div class="om-section-title"><div><p class="om-eyebrow">RINGKASAN</p><h2>Hasil pemeriksaan terakhir</h2></div><button class="om-text-btn" type="button" onclick="bukaHalaman('riwayat')">Lihat riwayat →</button></div>
-      <article class="om-card last-result">
-        <div class="om-result-top"><div><span class="om-date-dot"></span><span class="om-muted-small">25 Okt 2026 · Contoh UI</span></div><span class="om-status attention">Perlu Perhatian</span></div>
-        <div class="om-metrics">
-          <div><span>Usia kronologis</span><strong>9 <small>tahun</small></strong><em>108 bulan</em></div>
-          <div><span>Estimasi usia tulang</span><strong class="om-bone-age">7 <small>tahun</small></strong><em>84 bulan</em></div>
-        </div>
-        <div class="om-result-difference"><span>Selisih pada data contoh</span><strong>−24 bulan</strong></div>
-        <button class="om-detail-toggle" id="homeShowDetail" type="button" aria-expanded="false" aria-controls="homeResultExplanation"><span><b>ⓘ</b> Detail penjelasan hasil</span><span class="om-chevron">⌄</span></button>
-        <div class="om-explanation" id="homeResultExplanation" hidden>
-          <div class="om-explanation-heading">Mengapa perlu perhatian?</div>
-          <p>Pada contoh tampilan ini, estimasi usia tulang 7 tahun dibandingkan usia kronologis 9 tahun, sehingga terdapat selisih 2 tahun. Penjelasan ini masih berupa teks contoh dan belum didasarkan pada validasi klinis.</p>
-          <div class="om-next-step"><strong>Saran tindak lanjut (placeholder)</strong><p>Bagian ini nantinya diisi berdasarkan validasi data dan masukan dokter RSUD Haji.</p></div>
-        </div>
-        <p class="om-disclaimer">Data dan status di atas hanya contoh desain, bukan hasil analisis atau diagnosis medis.</p>
+      <div class="om-section-title">
+        <div><p class="om-eyebrow">RINGKASAN</p><h2>Hasil pemeriksaan terakhir</h2></div>
+        <button class="om-text-btn" type="button" onclick="bukaHalaman('riwayat')">Lihat riwayat →</button>
+      </div>
+      <article class="om-card om-empty-results">
+        <div class="om-empty-icon" aria-hidden="true">▤</div>
+        <h3>Belum ada hasil pemeriksaan</h3>
+        <p>Hasil pemeriksaan akan muncul di sini setelah kamu melakukan pemeriksaan. Untuk saat ini, unggah X-ray hanya digunakan untuk uji tampilan dan belum menghasilkan analisis.</p>
+        <button class="om-empty-link" type="button" onclick="bukaHalaman('riwayat')">Buka riwayat pemeriksaan →</button>
       </article>
     </section>
   </main>
