@@ -5,46 +5,183 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css"><link rel="stylesheet" href="home.css"><link rel="stylesheet" href="mobile-pages.css">
+<style>
+  /* Perbaikan Total Layout Chat agar Gradasi & Kolom Ketemu Pas */
+  body > .om-chat-page, .om-chat-page {
+    background: linear-gradient(180deg, #074626 0%, #118349 40%, #e2f4ea 100%) !important;
+    min-height: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+  }
+  .om-chat-page .om-topbar {
+    background: transparent !important;
+    border-bottom: none !important;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .om-chat-page .om-brand { color: #fff; }
+  .om-chat-page .om-brand small { color: rgba(255,255,255,0.8); }
+  .om-chat-page .om-logo { background: #fff; color: #0a4f2b; }
+  .om-chat-page .om-icon-btn { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.35); color: #fff; }
+
+  .om-chat-content {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+    min-height: 0 !important;
+    padding: 8px 12px 76px !important;
+    overflow: hidden !important;
+    justify-content: space-between !important;
+  }
+
+  .om-chat-card {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+    min-height: 0 !important;
+    justify-content: flex-end !important;
+  }
+
+  .om-chat-heading { display: none !important; }
+
+  .om-chat-box {
+    flex: 1 !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 4px;
+    background: transparent !important;
+    border: none !important;
+    margin-bottom: 8px;
+  }
+
+  .chat-bubble { display: flex; gap: 8px; align-items: flex-end; max-width: 90%; margin: 4px 0; }
+  .chat-bubble.user { margin-left: auto; flex-direction: row-reverse; }
+  .chat-avatar { width: 30px; height: 30px; flex: 0 0 30px; border-radius: 50%; background: #0a4f2b; display: grid; place-items: center; color: white; font-size: 0.8rem; }
+  .chat-message { background: #074626; color: #fff; border-radius: 14px 14px 14px 4px; padding: 10px 12px; line-height: 1.45; font-size: 0.78rem; overflow-wrap: anywhere; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  .chat-bubble.user .chat-message { background: #ffffff; color: #172b21; border: 1px solid #dce9e1; border-radius: 14px 14px 4px 14px; }
+
+  /* Panel Quick Text */
+  .om-quick-text-card {
+    background: #ffffff;
+    border: 1px solid #dce9e1;
+    border-radius: 16px;
+    padding: 10px 12px;
+    box-shadow: 0 6px 20px rgba(10,79,43,0.1);
+    margin-bottom: 8px;
+    flex-shrink: 0;
+  }
+  .om-quick-title {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #172b21;
+    margin-bottom: 6px;
+  }
+  .om-quick-chips {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .om-quick-chip-btn {
+    background: #0a4f2b;
+    color: #fff;
+    border: none;
+    border-radius: 99px;
+    padding: 7px 12px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .om-quick-chip-btn:hover { opacity: 0.9; }
+
+  .om-chat-prompts { display: none !important; }
+
+  /* Kotak Input Chat di Bagian Bawah */
+  .om-chat-composer {
+    background: #ffffff !important;
+    border: 1.5px solid #cce5d5 !important;
+    border-radius: 99px !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 5px 6px 5px 12px !important;
+    box-shadow: 0 4px 14px rgba(10,79,43,0.08);
+    flex-shrink: 0;
+    margin-bottom: 2px;
+  }
+  .om-chat-composer input {
+    border: none !important;
+    background: transparent !important;
+    font-size: 0.78rem !important;
+    color: #172b21 !important;
+    outline: none !important;
+    padding: 6px 2px !important;
+    width: 100%;
+  }
+  .om-chat-composer input::placeholder { color: #718279; }
+  .om-chat-send {
+    background: #0a4f2b !important;
+    color: white !important;
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 50% !important;
+    display: grid !important;
+    place-items: center !important;
+    font-size: 0.8rem !important;
+    flex-shrink: 0;
+  }
+  .om-chat-attach { display: none !important; }
+  .om-disclaimer { text-align: center; font-size: 0.58rem; color: #44584c; margin-top: 2px; flex-shrink: 0; }
+</style>
 </head><body>
 <section class="ossia-mobile-page om-chat-page" id="view-chat">
   <header class="om-topbar">
     <div class="om-brand"><span class="om-logo">O<i></i></span><span>OSSIA<small>RSUD Haji</small></span></div>
-    <button class="om-icon-btn" id="chatNotifications" type="button" aria-label="Notifikasi" title="Notifikasi">
-      <svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
-        <path d="M10 21h4"></path>
-      </svg><b></b>
+    <button class="om-icon-btn" id="chatNotifications" type="button" aria-label="Riwayat Chat" title="Riwayat Chat" onclick="showOssiaToast('Menu Riwayat Chat')">
+      <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
     </button>
   </header>
+  
   <main class="om-content om-chat-content">
-    <section class="om-page-intro">
-      <p class="om-eyebrow">ASISTEN OSSIA</p>
-      <h1>Chatbot Edukasi</h1>
-      <p>Tanyakan informasi umum seputar skrining usia tulang karpal.</p>
-    </section>
     <section class="om-chat-card">
-      <div class="om-chat-heading">
-        <div class="om-chat-bot">✦</div>
-        <div><strong>Asisten OSSIA</strong><span><i></i> Siap membantu · Demo UI</span></div>
-      </div>
       <div id="chat-box" class="om-chat-box" aria-live="polite">
-        <div class="om-chat-row ai">
-          <div class="om-chat-avatar">✦</div>
-          <div class="om-chat-bubble">Halo! 👋 Saya Asisten OSSIA. Kamu bisa bertanya tentang usia tulang, proses skrining, atau cara membaca ringkasan pemeriksaan.</div>
+        <div class="chat-bubble ai">
+          <div class="chat-avatar">🤖</div>
+          <div class="chat-message"><b>Hai, aku OSSIA!</b><br>Tanya apa saja tentang skrining usia tulang, proses analisis, atau tips kesehatan pertumbuhan anak.</div>
         </div>
       </div>
-      <div class="om-chat-prompts">
-        <button type="button" onclick="document.getElementById('chat-input').value='Apa itu usia tulang?';document.getElementById('chat-input').focus()">Apa itu usia tulang?</button>
-        <button type="button" onclick="document.getElementById('chat-input').value='Bagaimana cara kerja skrining?';document.getElementById('chat-input').focus()">Bagaimana cara kerja skrining?</button>
-        <button type="button" onclick="document.getElementById('chat-input').value='Apa arti status hasil?';document.getElementById('chat-input').focus()">Apa arti status hasil?</button>
+
+      <!-- Panel Quick Text -->
+      <div class="om-quick-text-card">
+        <div class="om-quick-title">QUICK TEXT</div>
+        <div class="om-quick-chips">
+          <button type="button" class="om-quick-chip-btn" onclick="document.getElementById('chat-input').value='Apa itu usia tulang?';document.getElementById('chat-input').focus()">Apa itu usia tulang?</button>
+          <button type="button" class="om-quick-chip-btn" onclick="document.getElementById('chat-input').value='Bagaimana cara kerja analisis?';document.getElementById('chat-input').focus()">Bagaimana cara kerja analisis?</button>
+          <button type="button" class="om-quick-chip-btn" onclick="document.getElementById('chat-input').value='Apa arti status hasil?';document.getElementById('chat-input').focus()">Apa arti status hasil?</button>
+          <button type="button" class="om-quick-chip-btn" onclick="document.getElementById('chat-input').value='Tips kesehatan pertumbuhan anak';document.getElementById('chat-input').focus()">Tips kesehatan pertumbuhan anak</button>
+        </div>
       </div>
+
+      <!-- Kolom Input Chat yang Diperbaiki agar Muncul di Bawah -->
       <form class="om-chat-composer" onsubmit="event.preventDefault();kirimPesan()">
-        <button class="om-chat-attach" type="button" onclick="simulasiUnggah()" aria-label="Simulasi lampiran">＋</button>
-        <input id="chat-input" type="text" placeholder="Ketik pertanyaan..." onkeydown="cekEnter(event)" autocomplete="off">
+        <input id="chat-input" type="text" placeholder="Ketik Sesuatu..." onkeydown="cekEnter(event)" autocomplete="off">
         <button class="om-chat-send" type="submit" aria-label="Kirim pesan">➤</button>
       </form>
     </section>
-    <p class="om-disclaimer">Chatbot ini masih berupa demo antarmuka dan bukan pengganti konsultasi tenaga medis.</p>
+
+    <p class="om-disclaimer">Chatbot ini merupakan demo antarmuka dan bukan pengganti konsultasi medis.</p>
   </main>
 </section>
 
@@ -79,5 +216,11 @@
   });
 })();
 </script>
-<script src="chatbot.js"></script><script>document.addEventListener("DOMContentLoaded",function(){if(typeof initChatbot==="function")initChatbot();});</script>
+
+<script src="chatbot.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+    if(typeof initChatbot === "function") initChatbot();
+  });
+</script>
 </body></html>

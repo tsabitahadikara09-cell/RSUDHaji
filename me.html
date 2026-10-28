@@ -3,36 +3,128 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0a4f2b"><title>OSSIA | Profil</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css"><link rel="stylesheet" href="home.css"><link rel="stylesheet" href="mobile-pages.css">
+<style>
+  .om-me-content {
+    background: linear-gradient(180deg, #0a4f2b 0%, #e5f5ec 45%, #f4f9f6 100%);
+    min-height: calc(100vh - 68px);
+    padding-bottom: 30px;
+  }
+  .om-custom-profile-card {
+    background: #ffffff;
+    border: 1px solid #dce9e1;
+    border-radius: 20px;
+    padding: 16px;
+    box-shadow: 0 10px 30px rgba(10,79,43,0.1);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  .om-custom-avatar {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: linear-gradient(135deg, #dff3e6, #a1d6bc);
+    display: grid;
+    place-items: center;
+    border: 2px solid #cce5d5;
+    flex-shrink: 0;
+  }
+  .om-custom-avatar svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .om-profile-details {
+    flex: 1;
+    min-width: 0;
+  }
+  .om-badge-pill {
+    display: inline-block;
+    background: #0a4f2b;
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 99px;
+    margin-bottom: 4px;
+    letter-spacing: 0.3px;
+  }
+  .om-role-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #718279;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .om-info-text {
+    font-size: 0.72rem;
+    color: #45564e;
+    line-height: 1.4;
+  }
+</style>
 </head><body>
 <section class="ossia-mobile-page om-me-page" id="view-me">
   <header class="om-topbar">
     <div class="om-brand"><span class="om-logo">O<i></i></span><span>OSSIA<small>RSUD Haji</small></span></div>
-    <button class="om-icon-btn" id="meNotifications" type="button" aria-label="Notifikasi" title="Notifikasi">
+    <button class="om-icon-btn" id="meNotifications" type="button" aria-label="Notifikasi" title="Notifikasi" onclick="showOssiaToast('Belum ada notifikasi baru.')">
       <svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
         <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
         <path d="M10 21h4"></path>
       </svg><b></b>
     </button>
   </header>
-  <main class="om-content">
+  <main class="om-content om-me-content">
     <section class="om-page-intro">
-      <p class="om-eyebrow">AKUN PASIEN</p>
-      <h1>Profil</h1>
-      <p>Informasi akun dan pengaturan pasien.</p>
+      <h1>PROFILE</h1>
     </section>
-    <section class="om-card om-profile-card">
-      <div class="om-profile-avatar">👦</div>
-      <div class="om-profile-main"><strong>An. Arka Pratama</strong><span>Pasien Anak</span><small>No. Rekam Medis: RM-100010</small></div>
-      <span class="om-profile-badge">Pasien</span>
-    </section>
+
+    <!-- Kartu Profil Pasien -->
+    <div class="om-custom-profile-card">
+      <div class="om-custom-avatar">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" fill="#dff3e6"/>
+          <path d="M0 70C20 60 40 80 60 70C80 60 90 75 100 70V100H0V70Z" fill="#83b99a" fill-opacity="0.6"/>
+          <circle cx="50" cy="40" r="18" fill="#ffdf88"/>
+          <path d="M20 85C30 70 50 75 70 85" stroke="#0a4f2b" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="om-profile-details">
+        <span class="om-badge-pill">AN. AHMAD ARIFIN</span>
+        <div class="om-role-label">PASIEN ANAK</div>
+        <div class="om-info-text">No. Pasien : RM-PADANG001</div>
+        <div class="om-info-text">Email : awikwokwikwok</div>
+      </div>
+    </div>
+
+    <!-- Menu Profil Navigasi -->
     <section class="om-profile-menu">
-      <button type="button" onclick="showOssiaToast('Menu Data Pribadi masih berupa UI demo.')"><span class="om-profile-menu-icon">♙</span><span><strong>Data Pribadi</strong><small>Informasi pasien</small></span><b>›</b></button>
-      <button type="button" onclick="bukaHalaman('riwayat')"><span class="om-profile-menu-icon">▤</span><span><strong>Riwayat Pemeriksaan</strong><small>Lihat catatan pemeriksaan</small></span><b>›</b></button>
-      <button type="button" onclick="showOssiaToast('Pengaturan akan diaktifkan pada tahap berikutnya.')"><span class="om-profile-menu-icon">⚙</span><span><strong>Pengaturan</strong><small>Preferensi akun</small></span><b>›</b></button>
-      <button type="button" onclick="showOssiaToast('Bantuan OSSIA masih berupa UI demo.')"><span class="om-profile-menu-icon">?</span><span><strong>Bantuan</strong><small>Panduan penggunaan OSSIA</small></span><b>›</b></button>
+      <button type="button" onclick="showOssiaToast('Menu Data Pribadi masih berupa UI demo.')">
+        <span class="om-profile-menu-icon">♙</span>
+        <span><strong>Data Pribadi & Akun</strong><small>Informasi detail pasien</small></span>
+        <b>›</b>
+      </button>
+      <button type="button" onclick="bukaHalaman('riwayat')">
+        <span class="om-profile-menu-icon">▤</span>
+        <span><strong>Riwayat Pemeriksaan</strong><small>Lihat catatan pemeriksaan X-ray</small></span>
+        <b>›</b>
+      </button>
+      <button type="button" onclick="showOssiaToast('Pengaturan akan diaktifkan pada tahap berikutnya.')">
+        <span class="om-profile-menu-icon">⚙</span>
+        <span><strong>Pengaturan & Privasi</strong><small>Preferensi aplikasi</small></span>
+        <b>›</b>
+      </button>
+      <button type="button" onclick="showOssiaToast('Bantuan OSSIA masih berupa UI demo.')">
+        <span class="om-profile-menu-icon">?</span>
+        <span><strong>Bantuan & Panduan</strong><small>Panduan skrining karpal AI</small></span>
+        <b>›</b>
+      </button>
     </section>
+
     <button class="om-logout-btn" type="button" onclick="bukaHalaman('login')"><span>⇥</span> Keluar</button>
     <p class="om-disclaimer">Data profil pada tampilan ini merupakan data contoh untuk rancangan antarmuka.</p>
   </main>
