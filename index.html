@@ -147,7 +147,7 @@ body { margin:0; }
   </div>
 
   <div class="onboarding-bottom dark" id="onboardingBottom">
-    <button class="start-btn" type="button" onclick="window.location.href='login.html'">Mulai Sekarang <span aria-hidden="true">→</span></button>
+    <button class="start-btn" type="button" onclick="openOssiaPage('login.html')">Mulai Sekarang <span aria-hidden="true">→</span></button>
   </div>
 </section>
 <script>
@@ -180,5 +180,157 @@ body { margin:0; }
   showSlide(0);
 })();
 </script>
+
+<style>
+/* Shell aplikasi di index.html: frame mobile tetap terlihat saat dibuka dari laptop */
+#ossiaAppShell {
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  align-items:center;
+  justify-content:center;
+  padding:12px;
+  box-sizing:border-box;
+  background:radial-gradient(ellipse at center,#f7faf8 0%,#e7efea 100%);
+  font-family:"DM Sans",Arial,sans-serif;
+}
+#ossiaPhoneFrame {
+  position:relative;
+  width:min(100%,430px);
+  height:min(850px, calc(100dvh - 24px));
+  min-height:520px;
+  overflow:hidden;
+  border:1px solid #d7e5dc;
+  border-radius:38px;
+  background:#f4f8f5;
+  box-shadow:0 20px 60px rgba(13,70,42,.16), inset 0 0 0 5px rgba(255,255,255,.7);
+}
+#ossiaPageFrame {
+  display:block;
+  width:100%;
+  height:100%;
+  border:0;
+  background:#f4f8f5;
+}
+#ossiaIndexNav {
+  display:none;
+  position:absolute;
+  z-index:20;
+  left:8px;
+  right:8px;
+  bottom:8px;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:4px;
+  padding:7px;
+  border:1px solid #e5eee8;
+  border-radius:19px;
+  background:rgba(255,255,255,.97);
+  box-shadow:0 -5px 18px rgba(14,65,39,.08);
+  box-sizing:border-box;
+}
+#ossiaIndexNav a {
+  display:flex;
+  min-width:0;
+  min-height:52px;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+  border-radius:13px;
+  color:#829188;
+  text-decoration:none;
+  font:500 11px/1.1 "DM Sans",Arial,sans-serif;
+  -webkit-tap-highlight-color:transparent;
+}
+#ossiaIndexNav a.active { color:#087b45; background:#edf7f1; font-weight:700; }
+#ossiaIndexNav svg {
+  width:20px;height:20px;display:block;fill:none;stroke:currentColor;
+  stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;
+}
+@media(max-height:600px) {
+  #ossiaPhoneFrame { height:calc(100dvh - 12px); min-height:0; border-radius:26px; }
+}
+@media(max-width:460px) {
+  #ossiaAppShell { padding:0; background:#f4f8f5; }
+  #ossiaPhoneFrame { width:100%; height:100dvh; min-height:0; border-radius:0; border:0; box-shadow:none; }
+  #ossiaIndexNav { left:6px;right:6px;bottom:calc(6px + env(safe-area-inset-bottom)); }
+}
+</style>
+
+<section id="ossiaAppShell" aria-label="Aplikasi OSSIA">
+  <div id="ossiaPhoneFrame">
+    <iframe id="ossiaPageFrame" title="Halaman OSSIA" src="about:blank"></iframe>
+    <nav id="ossiaIndexNav" aria-label="Navigasi utama OSSIA">
+      <a href="home.html" data-page="home.html" aria-label="Home">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 3.8l8.5 6.7"/><path d="M5.8 9.7v10h12.4v-10"/><path d="M9.5 19.7v-6h5v6"/></svg>
+        <span>Home</span>
+      </a>
+      <a href="riwayat.html" data-page="riwayat.html" aria-label="Riwayat">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.8h12a1.5 1.5 0 0 1 1.5 1.5v15H4.5v-15A1.5 1.5 0 0 1 6 3.8Z"/><path d="M8 8h8M8 12h8M8 16h8"/></svg>
+        <span>Riwayat</span>
+      </a>
+      <a href="chat.html" data-page="chat.html" aria-label="Chat">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 11.2a7.7 7.7 0 0 1-8 7.4 8.8 8.8 0 0 1-3.4-.7l-4.3 1.4 1.4-3.7a7.1 7.1 0 0 1-1.7-4.4 7.8 7.8 0 0 1 8-7.4 7.8 7.8 0 0 1 8 7.4Z"/></svg>
+        <span>Chat</span>
+      </a>
+      <a href="me.html" data-page="me.html" aria-label="Me">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.5"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg>
+        <span>Me</span>
+      </a>
+    </nav>
+  </div>
+</section>
+
+<script>
+function openOssiaPage(page) {
+  const landing = document.querySelector('.landing-page.ossia-onboarding');
+  const shell = document.getElementById('ossiaAppShell');
+  const frame = document.getElementById('ossiaPageFrame');
+  const nav = document.getElementById('ossiaIndexNav');
+
+  if (!landing || !shell || !frame || !nav) return;
+
+  landing.style.display = 'none';
+  shell.style.display = 'flex';
+  nav.style.display = 'none';
+  frame.src = page;
+
+  // Tampilkan navigasi utama hanya pada halaman aplikasi, bukan pada login.
+  frame.onload = function () {
+    let currentFile = '';
+    try {
+      currentFile = frame.contentWindow.location.pathname.split('/').pop().toLowerCase();
+    } catch (error) {
+      currentFile = page.toLowerCase();
+    }
+
+    const appPages = ['home.html', 'riwayat.html', 'chat.html', 'me.html'];
+    const showNav = appPages.includes(currentFile);
+    nav.style.display = showNav ? 'grid' : 'none';
+
+    nav.querySelectorAll('a[data-page]').forEach(link => {
+      const active = link.dataset.page.toLowerCase() === currentFile;
+      link.classList.toggle('active', active);
+      if (active) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
+    });
+  };
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  const nav = document.getElementById('ossiaIndexNav');
+  const frame = document.getElementById('ossiaPageFrame');
+  if (!nav || !frame) return;
+
+  nav.querySelectorAll('a[data-page]').forEach(link => {
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
+      frame.src = link.dataset.page;
+    });
+  });
+});
+</script>
+
 </body>
 </html>
