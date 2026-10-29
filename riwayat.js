@@ -1,143 +1,128 @@
 (function () {
-  // UI riwayat sengaja dimulai kosong. Database Cloudflare akan dihubungkan pada tahap akhir.
-  // Jangan masukkan data contoh ke array ini.
-  const records = [];
+  "use strict";
+  const HISTORY_KEY = "ossia_exam_history";
   let activeFilter = "all";
 
+  function recordsFromStorage() {
+    try {
+      const value = JSON.parse(localStorage.getItem(HISTORY_KEY) || "[]");
+      return Array.isArray(value) ? value : [];
+    } catch (_) { return []; }
+  }
+  function esc(value) {
+    return String(value ?? "").replace(/[&<>"']/g, ch => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+    }[ch]));
+  }
+  function statusClass(status) {
+    return status === "Perlu peninjauan" ? "attention" :
+      status === "Normal" ? "normal" : "review";
+  }
   function initRiwayatUI() {
     const list = document.getElementById("historyList");
     const search = document.getElementById("historySearch");
     if (!list || !search || search.dataset.bound === "1") return;
     search.dataset.bound = "1";
-
     const clear = document.getElementById("historyClear");
     const dialog = document.getElementById("historyDetailDialog");
+    const detailContent = document.getElementById("historyDetailContent");
 
-    const months = n => {
-      const y = Math.floor(n / 12), m = n % 12;
-      return y && m ? `${y} th ${m} bln` : y ? `${y} tahun` : `${m} bulan`;
-    };
-
-    const card = r => {
-      const diff = r.bone - r.chrono;
+    function dateText(record) {
+      const d = new Date(record.dateISO || record.date || Date.now());
+      return Number.isNaN(d.getTime()) ? "Tanggal tidak tersedia" :
+        d.toLocaleString("id-ID", {day:"2-digit",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"});
+    }
+    function emptyText(query) {
+      if (query) return ["Tidak ada hasil yang cocok", "Coba kata kunci lain atau hapus pencarian."];
+      if (activeFilter === "normal") return ["Belum ada data Normal", "Segmentasi Otsu tidak menetapkan status klinis normal."];
+      if (activeFilter === "attention") return ["Belum ada hasil yang perlu peninjauan", "Hasil yang memerlukan pemeriksaan visual akan muncul di sini."];
+      return ["Belum ada riwayat pemeriksaan", "Unggah dan proses citra X-ray dari Home untuk menyimpan hasil."];
+    }
+    function card(r) {
+      const status = esc(r.status || "Perlu verifikasi");
+      const id = esc(r.id || "OSSIA");
+      const name = esc(r.filename || "Citra X-ray");
+      const thumb = r.overlay
+        ? `<img class="om-xray-thumb-img" src="${r.overlay}" alt="Overlay segmentasi X-ray">`
+        : `<div class="om-xray-thumb" aria-hidden="true">▧</div>`;
+      const threshold = r.threshold == null ? "—" : Number(r.threshold).toFixed(1);
+      const area = r.foregroundRatio == null ? "—" : `${(Number(r.foregroundRatio) * 100).toFixed(1)}%`;
       return `<article class="om-history-card">
         <div class="om-history-top">
-          <div class="om-history-date">
-            <div class="om-xray-thumb" aria-hidden="true">▧</div>
-            <div><strong>${r.date}</strong><small>ID pemeriksaan: ${r.id}</small></div>
-          </div>
-          <span class="om-status ${r.status}">${r.statusLabel}</span>
+          <div class="om-history-date">${thumb}<div><strong>${name}</strong><small>${dateText(r)} · ID: ${id}</small></div></div>
+          <span class="om-status ${statusClass(r.status)}">${status}</span>
         </div>
         <div class="om-history-metrics">
-          <div><span>Usia kronologis</span><strong>${months(r.chrono)}</strong></div>
-          <div><span>Estimasi usia tulang</span><strong class="bone">${months(r.bone)}</strong></div>
+          <div><span>Ambang Otsu</span><strong>${threshold}</strong></div>
+          <div><span>Area mask</span><strong>${area}</strong></div>
         </div>
-        <div class="om-history-bottom">
-          <p>Selisih: <strong>${diff > 0 ? "+" : ""}${diff} bulan</strong></p>
-          <button class="om-detail-button" type="button" data-detail="${r.id}">Detail hasil →</button>
+        <div class="om-history-bottom"><p>Estimasi usia tulang: <strong>Belum tersedia</strong></p>
+          <button class="om-detail-button" type="button" data-detail-id="${id}">Detail hasil →</button>
         </div>
       </article>`;
-    };
-
+    }
     function showDetail(id) {
-      const r = records.find(item => item.id === id);
-      if (!r || !dialog) return;
-      const diff = r.bone - r.chrono;
-      document.getElementById("historyDetailContent").innerHTML = `
-        <p class="om-eyebrow">DETAIL PEMERIKSAAN</p>
-        <h2>${r.date}</h2><p>ID pemeriksaan: ${r.id} · No. RM: ${r.rm}</p>
-        <span class="om-status ${r.status}">${r.statusLabel}</span>
+      const r = recordsFromStorage().find(item => String(item.id) === String(id));
+      if (!r || !detailContent) return;
+      const overlay = r.overlay ? `<img src="${r.overlay}" alt="Overlay hasil segmentasi" style="width:100%;border-radius:12px;margin:12px 0">` : "";
+      const mask = r.mask ? `<details><summary>Lihat mask segmentasi</summary><img src="${r.mask}" alt="Mask biner" style="width:100%;border-radius:12px;margin-top:8px"></details>` : "";
+      const threshold = r.threshold == null ? "—" : Number(r.threshold).toFixed(1);
+      const area = r.foregroundRatio == null ? "—" : `${(Number(r.foregroundRatio)*100).toFixed(1)}%`;
+      detailContent.innerHTML = `
+        <p class="om-eyebrow">DETAIL PEMROSESAN CITRA</p>
+        <h2>${esc(r.filename || "Citra X-ray")}</h2>
+        <p>ID pemeriksaan: ${esc(r.id || "OSSIA")}<br>${dateText(r)}</p>
+        <span class="om-status ${statusClass(r.status)}">${esc(r.status || "Perlu verifikasi")}</span>
+        ${overlay}${mask}
         <div class="om-detail-grid">
-          <div><span>Usia kronologis</span><strong>${months(r.chrono)}</strong></div>
-          <div><span>Estimasi usia tulang</span><strong>${months(r.bone)}</strong></div>
-          <div><span>Selisih</span><strong>${diff > 0 ? "+" : ""}${diff} bulan</strong></div>
-          <div><span>Status</span><strong>${r.statusLabel}</strong></div>
+          <div><span>Ambang Otsu</span><strong>${threshold}</strong></div>
+          <div><span>Area mask</span><strong>${area}</strong></div>
         </div>
-        <div class="om-detail-explanation"><strong>Penjelasan status</strong><p>${r.explanation || "Penjelasan hasil akan ditampilkan setelah data pemeriksaan tersedia."}</p></div>
-        <p>${r.note || ""}</p>
-        <p><strong>Catatan:</strong> hasil skrining bukan pengganti diagnosis dokter.</p>`;
-      dialog.showModal();
+        <div class="om-detail-explanation"><strong>Penjelasan</strong><p>${esc(r.explanation || "Hasil segmentasi perlu diperiksa secara visual.")}</p></div>
+        <p>${esc(r.limitation || "Hasil ini bukan estimasi usia tulang atau diagnosis klinis.")}</p>
+        <p><strong>Catatan:</strong> hasil Otsu merupakan segmentasi berbasis intensitas, bukan penilaian klinis.</p>`;
+      if (dialog && typeof dialog.showModal === "function") dialog.showModal();
+      else detailContent.scrollIntoView({behavior:"smooth"});
     }
-
-    function emptyStateMessage(query) {
-      if (query) {
-        return {
-          title: "Tidak ada hasil yang cocok",
-          body: "Coba gunakan kata kunci lain atau hapus pencarian."
-        };
-      }
-      if (activeFilter === "normal") {
-        return {
-          title: "Belum ada pemeriksaan normal",
-          body: "Pemeriksaan dengan status Normal akan muncul di sini."
-        };
-      }
-      if (activeFilter === "attention") {
-        return {
-          title: "Belum ada pemeriksaan yang perlu perhatian",
-          body: "Pemeriksaan dengan status Perlu Perhatian akan muncul di sini."
-        };
-      }
-      return {
-        title: "Belum ada riwayat pemeriksaan",
-        body: "Hasil pemeriksaan yang tersimpan akan ditampilkan di sini."
-      };
-    }
-
     function render() {
+      const records = recordsFromStorage();
       const query = search.value.trim().toLowerCase();
       const filtered = records.filter(r => {
-        const filterOk = activeFilter === "all" || r.status === activeFilter;
-        const queryOk = !query || [
-          r.date, r.id, r.rm, r.statusLabel,
-          months(r.chrono), months(r.bone)
-        ].some(value => String(value ?? "").toLowerCase().includes(query));
-        return filterOk && queryOk;
+        const s = String(r.status || "").toLowerCase();
+        const matchesFilter = activeFilter === "all" ||
+          (activeFilter === "normal" && s === "normal") ||
+          (activeFilter === "attention" && s === "perlu peninjauan");
+        const searchFields = [r.filename, r.id, r.status, dateText(r)];
+        return matchesFilter && (!query || searchFields.some(v => String(v || "").toLowerCase().includes(query)));
       });
-
-      document.getElementById("historyTotal").textContent = records.length;
-      document.getElementById("historyAttention").textContent =
-        records.filter(r => r.status === "attention").length;
-
-      if (filtered.length) {
-        list.innerHTML = filtered.map(card).join("");
-      } else {
-        const empty = emptyStateMessage(query);
-        list.innerHTML = `<div class="om-empty-state"><strong>${empty.title}</strong><span>${empty.body}</span></div>`;
+      const total = document.getElementById("historyTotal");
+      const attention = document.getElementById("historyAttention");
+      if (total) total.textContent = String(records.length);
+      if (attention) attention.textContent = String(records.filter(r => r.status === "Perlu peninjauan").length);
+      if (filtered.length) list.innerHTML = filtered.map(card).join("");
+      else {
+        const [title, body] = emptyText(query);
+        list.innerHTML = `<div class="om-empty-state"><strong>${title}</strong><span>${body}</span></div>`;
       }
-
-      list.querySelectorAll("[data-detail]").forEach(button => {
-        button.addEventListener("click", () => showDetail(button.dataset.detail));
-      });
-
+      list.querySelectorAll("[data-detail-id]").forEach(b => b.addEventListener("click", () => showDetail(b.dataset.detailId)));
       if (clear) clear.hidden = !search.value;
-      document.querySelectorAll("[data-history-filter]").forEach(button => {
-        const selected = button.dataset.historyFilter === activeFilter;
-        button.classList.toggle("selected", selected);
-        button.setAttribute("aria-pressed", String(selected));
+      document.querySelectorAll("[data-history-filter]").forEach(b => {
+        const selected = b.dataset.historyFilter === activeFilter;
+        b.classList.toggle("selected", selected);
+        b.setAttribute("aria-pressed", String(selected));
       });
     }
-
     search.addEventListener("input", render);
-    if (clear) {
-      clear.addEventListener("click", () => {
-        search.value = "";
-        render();
-        search.focus();
-      });
-    }
-
-    document.querySelectorAll("[data-history-filter]").forEach(button => {
-      button.addEventListener("click", () => {
-        activeFilter = button.dataset.historyFilter || "all";
-        render();
-      });
+    clear?.addEventListener("click", () => { search.value = ""; render(); search.focus(); });
+    document.querySelectorAll("[data-history-filter]").forEach(b => b.addEventListener("click", () => {
+      activeFilter = b.dataset.historyFilter || "all"; render();
+    }));
+    document.getElementById("historyNotifications")?.addEventListener("click", () => {
+      if (typeof window.showOssiaToast === "function") window.showOssiaToast("Belum ada notifikasi baru.");
     });
-
     render();
   }
-
   window.initRiwayatUI = initRiwayatUI;
-  if (document.readyState !== "loading") initRiwayatUI();
-  else document.addEventListener("DOMContentLoaded", initRiwayatUI);
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initRiwayatUI);
+  else initRiwayatUI();
 })();
