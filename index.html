@@ -1,336 +1,288 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0a4f2b">
-<title>OSSIA | Skrining Usia Tulang</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<style>
-/* Khusus onboarding: dua slide yang bisa digeser di dalam frame mobile */
-html, body { min-height:100%; }
-body { margin:0; }
-.landing-page.ossia-onboarding {
-  width:100%; min-height:100dvh; display:block !important; position:relative;
-  overflow:hidden; background:#f4f8f5;
-}
-.onboarding-track {
-  display:flex; width:200%; min-height:calc(100dvh - 96px);
-  transition:transform .32s ease; touch-action:pan-y;
-}
-.onboarding-slide {
-  width:50%; min-height:calc(100dvh - 96px); flex:0 0 50%;
-  display:flex; flex-direction:column; align-items:center; text-align:center;
-  padding:calc(26px + env(safe-area-inset-top)) 24px 24px;
-  position:relative; overflow:hidden;
-}
-.onboarding-slide.slide-one { background:linear-gradient(160deg,#07502e 0%,#03452a 100%); color:#fff; }
-.onboarding-slide.slide-two { background:linear-gradient(160deg,#f9fcfa 0%,#eaf5ee 100%); color:#143c29; }
-.onboarding-brand { display:flex; align-items:center; gap:10px; margin:10px auto 0; font:800 1.5rem Manrope,sans-serif; }
-.onboarding-logo { width:42px;height:42px;border-radius:12px;background:#fff;color:#07502e;display:grid;place-items:center;position:relative;font-size:1.55rem;font-weight:800; }
-.onboarding-logo:after { content:"";position:absolute;width:11px;height:11px;right:-3px;top:-3px;background:#f0b323;border:2px solid #07502e;border-radius:50%; }
-.onboarding-slide h1 { font:800 clamp(1.8rem,7vw,2.2rem)/1.15 Manrope,sans-serif; margin:28px 0 14px; max-width:340px; }
-.onboarding-slide .lead { font:400 1rem/1.55 "DM Sans",sans-serif; margin:0; max-width:340px; }
-.hand-art {
-  width:190px;height:215px;display:grid;place-items:center;margin:18px auto 8px;
-  color:rgba(213,245,225,.76); position:relative;
-}
-.hand-art svg { width:100%;height:100%;filter:drop-shadow(0 8px 16px rgba(0,0,0,.1)); }
-.slide-one .hand-art { flex:1; min-height:160px; max-height:270px; }
-.slide-one .disclaimer { margin:8px 0 0; color:#c7e5d3;font-size:.76rem;line-height:1.5; }
-.slide-two .onboarding-brand { color:#07502e; }
-.analysis-illustration {
-  width:min(100%,310px);height:260px;margin:22px auto 10px;position:relative;
-  display:grid;place-items:center;border-radius:28px;
-  background:radial-gradient(circle at 50% 48%,#d9f1e3 0,#eaf7ef 50%,transparent 72%);
-}
-.xray-card {
-  width:142px;height:200px;transform:rotate(8deg);border-radius:18px;background:linear-gradient(145deg,#142720,#3d5148);
-  border:7px solid #fff;box-shadow:0 12px 30px #0a4f2b22;display:grid;place-items:center;
-}
-.xray-card svg {width:100%;height:100%;padding:10px;}
-.feature-chip {
-  position:absolute;display:flex;align-items:center;gap:7px;padding:10px 12px;
-  background:#fff;border:1px solid #e2eee6;border-radius:14px;box-shadow:0 8px 20px #0a4f2b12;
-  color:#174b31;font-size:.7rem;font-weight:700;text-align:left;
-}
-.feature-chip b {font-size:1.15rem;color:#12824c;}
-.chip-left {left:0;top:55px}.chip-right {right:0;top:32px}.chip-bottom {right:0;bottom:32px}
-.slide-two h2 {font:800 1.65rem/1.2 Manrope,sans-serif;margin:4px 0 10px;}
-.slide-two .lead {color:#71847a;}
-.slide-dots {display:flex;gap:10px;justify-content:center;align-items:center;margin:16px 0 18px;}
-.slide-dot {width:9px;height:9px;border:0;padding:0;border-radius:50%;background:#91c8a8;cursor:pointer;}
-.slide-dot.active {background:#fff;box-shadow:0 0 0 2px #fff5;}
-.slide-two .slide-dot.active {background:#07502e;box-shadow:none;}
-.onboarding-bottom {
-  position:absolute;left:0;right:0;bottom:0;z-index:5;padding:12px 18px calc(14px + env(safe-area-inset-bottom));
-  display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(0deg,#f4f8f5 78%,transparent);
-}
-.onboarding-bottom.dark {background:linear-gradient(0deg,#03452a 78%,transparent);}
-.start-btn {
-  flex:1;max-width:360px;min-height:54px;border:0;border-radius:999px;
-  background:#118349;color:#fff;font:700 1rem "DM Sans",sans-serif;
-  box-shadow:0 5px 15px #06492c20;cursor:pointer;
-}
-.slide-one .start-btn {background:#fff;color:#07502e;}
-.round-arrow {
-  width:44px;height:44px;flex:0 0 44px;border:0;border-radius:50%;
-  display:grid;place-items:center;background:#fff;color:#08733e;font-size:1.4rem;cursor:pointer;
-  box-shadow:0 4px 16px #0a4f2b12;
-}
-@media (min-width:761px) {
-  .onboarding-slide {padding-left:28px;padding-right:28px;}
-}
-@media (max-height:700px) {
- .onboarding-slide h1 {margin-top:18px;font-size:1.7rem}
- .hand-art {max-height:185px}
- .analysis-illustration {height:210px;margin-top:12px}
- .onboarding-slide {padding-top:16px}
-}
-</style>
-</head>
-<body>
-<section class="landing-page ossia-onboarding" aria-label="Perkenalan OSSIA">
-  <div class="onboarding-track" id="onboardingTrack">
-    <article class="onboarding-slide slide-one" aria-label="Slide 1">
-      <div class="onboarding-brand">
-        <span class="onboarding-logo">O</span><span>OSSIA</span>
-      </div>
-      <h1>Skrining Usia Tulang Karpal</h1>
-      <p class="lead">Unggah citra X-ray karpal, otomatisasi segmentasi Otsu, dan dapatkan rasio osifikasi dalam hitungan detik.</p>
-      <div class="hand-art" aria-hidden="true">
-        <svg viewBox="0 0 180 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g stroke="#bce6ce" stroke-opacity=".48" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M63 205 L63 160 L53 135 L48 91 Q47 82 54 81 Q61 80 63 89 L72 122 L67 58 Q66 47 74 47 Q82 47 83 58 L91 112 L91 34 Q91 23 99 23 Q107 23 107 35 L108 111 L117 49 Q119 39 126 42 Q133 44 131 54 L125 126 L145 100 Q152 92 158 98 Q164 104 157 112 L131 151 L128 205"/>
-            <path d="M65 159 L126 159 M70 137 L125 137 M76 115 L121 115"/>
-          </g>
-          <g fill="#d8f4e2" fill-opacity=".72">
-            <circle cx="70" cy="151" r="7"/><circle cx="88" cy="148" r="7"/><circle cx="106" cy="149" r="7"/><circle cx="122" cy="151" r="7"/>
-            <circle cx="79" cy="169" r="8"/><circle cx="99" cy="169" r="8"/><circle cx="116" cy="169" r="8"/>
-          </g>
-          <circle cx="100" cy="171" r="6" fill="#f0b323"/>
-        </svg>
-      </div>
-      <p class="disclaimer">Alat bantu skrining awal. Bukan pengganti diagnosis dokter.</p>
-    </article>
-    <article class="onboarding-slide slide-two" aria-label="Slide 2">
-      <div class="onboarding-brand">
-        <span class="onboarding-logo">O</span><span>OSSIA</span>
-      </div>
-      <div class="analysis-illustration" aria-hidden="true">
-        <div class="xray-card">
-          <svg viewBox="0 0 100 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g stroke="#d9eee2" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M30 155 L30 112 L20 91 L15 57 M43 155 L43 104 L38 47 L37 22 M55 155 L57 103 L58 12 M67 155 L70 107 L79 31 M30 113 L69 113 M25 93 L72 93 M25 74 L75 74"/>
-              <path d="M70 110 L88 87"/>
-            </g>
-            <g fill="#b5d7c3">
-              <circle cx="32" cy="119" r="7"/><circle cx="48" cy="118" r="7"/><circle cx="63" cy="119" r="7"/>
-              <circle cx="39" cy="135" r="7"/><circle cx="55" cy="136" r="7"/><circle cx="68" cy="134" r="7"/>
-            </g>
-          </svg>
-        </div>
-        <div class="feature-chip chip-left"><b>◉</b><span>Segmentasi<br>Otsu</span></div>
-        <div class="feature-chip chip-right"><b>AI</b><span>Analisis<br>otomatis</span></div>
-        <div class="feature-chip chip-bottom"><b>▥</b><span>Rasio<br>osifikasi</span></div>
-      </div>
-      <h2>Proses Analisis Otomatis</h2>
-      <p class="lead">Citra X-ray diproses menggunakan segmentasi Otsu untuk membantu menghitung rasio osifikasi secara terstruktur.</p>
-      <div class="slide-dots" aria-label="Pilih slide">
-        <button class="slide-dot" type="button" data-slide="0" aria-label="Slide 1"></button>
-        <button class="slide-dot active" type="button" data-slide="1" aria-label="Slide 2"></button>
-      </div>
-    </article>
-  </div>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+  <meta name="theme-color" content="#07543b">
 
-  <div class="onboarding-bottom dark" id="onboardingBottom">
-    <button class="start-btn" type="button" onclick="openOssiaPage('login.html')">Mulai Sekarang <span aria-hidden="true">→</span></button>
-  </div>
-</section>
-<script>
-(function () {
-  const track = document.getElementById('onboardingTrack');
-  const bottom = document.getElementById('onboardingBottom');
-  const dots = Array.from(document.querySelectorAll('.slide-dot'));
-  let current = 0, startX = 0, endX = 0;
-  function showSlide(index) {
-    current = Math.max(0, Math.min(1, index));
-    track.style.transform = current === 0 ? 'translateX(0)' : 'translateX(-50%)';
-    bottom.classList.toggle('dark', current === 0);
-    dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
-  }
-  dots.forEach(dot => dot.addEventListener('click', () => showSlide(Number(dot.dataset.slide))));
-  track.addEventListener('touchstart', e => { startX = e.changedTouches[0].screenX; }, {passive:true});
-  track.addEventListener('touchend', e => {
-    endX = e.changedTouches[0].screenX;
-    if (startX - endX > 40) showSlide(1);
-    else if (endX - startX > 40) showSlide(0);
-  }, {passive:true});
-  let pointerDown = false;
-  track.addEventListener('pointerdown', e => { pointerDown = true; startX = e.clientX; });
-  track.addEventListener('pointerup', e => {
-    if (!pointerDown) return;
-    pointerDown = false; endX = e.clientX;
-    if (startX - endX > 40) showSlide(1);
-    else if (endX - startX > 40) showSlide(0);
-  });
-  showSlide(0);
-})();
-</script>
+  <title>OSSIA | Skrining Usia Tulang</title>
 
-<style>
-/* Shell aplikasi di index.html: frame mobile tetap terlihat saat dibuka dari laptop */
-#ossiaAppShell {
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:9999;
-  align-items:center;
-  justify-content:center;
-  padding:12px;
-  box-sizing:border-box;
-  background:radial-gradient(ellipse at center,#f7faf8 0%,#e7efea 100%);
-  font-family:"DM Sans",Arial,sans-serif;
-}
-#ossiaPhoneFrame {
-  position:relative;
-  width:min(100%,430px);
-  height:min(850px, calc(100dvh - 24px));
-  min-height:520px;
-  overflow:hidden;
-  border:1px solid #d7e5dc;
-  border-radius:38px;
-  background:#f4f8f5;
-  box-shadow:0 20px 60px rgba(13,70,42,.16), inset 0 0 0 5px rgba(255,255,255,.7);
-}
-#ossiaPageFrame {
-  display:block;
-  width:100%;
-  height:100%;
-  border:0;
-  background:#f4f8f5;
-}
-#ossiaIndexNav {
-  display:none;
-  position:absolute;
-  z-index:20;
-  left:8px;
-  right:8px;
-  bottom:8px;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:4px;
-  padding:7px;
-  border:1px solid #e5eee8;
-  border-radius:19px;
-  background:rgba(255,255,255,.97);
-  box-shadow:0 -5px 18px rgba(14,65,39,.08);
-  box-sizing:border-box;
-}
-#ossiaIndexNav a {
-  display:flex;
-  min-width:0;
-  min-height:52px;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:3px;
-  border-radius:13px;
-  color:#829188;
-  text-decoration:none;
-  font:500 11px/1.1 "DM Sans",Arial,sans-serif;
-  -webkit-tap-highlight-color:transparent;
-}
-#ossiaIndexNav a.active { color:#087b45; background:#edf7f1; font-weight:700; }
-#ossiaIndexNav svg {
-  width:20px;height:20px;display:block;fill:none;stroke:currentColor;
-  stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;
-}
-@media(max-height:600px) {
-  #ossiaPhoneFrame { height:calc(100dvh - 12px); min-height:0; border-radius:26px; }
-}
-@media(max-width:460px) {
-  #ossiaAppShell { padding:0; background:#f4f8f5; }
-  #ossiaPhoneFrame { width:100%; height:100dvh; min-height:0; border-radius:0; border:0; box-shadow:none; }
-  #ossiaIndexNav { left:6px;right:6px;bottom:calc(6px + env(safe-area-inset-bottom)); }
-}
-</style>
-
-<section id="ossiaAppShell" aria-label="Aplikasi OSSIA">
-  <div id="ossiaPhoneFrame">
-    <iframe id="ossiaPageFrame" title="Halaman OSSIA" src="about:blank"></iframe>
-    <nav id="ossiaIndexNav" aria-label="Navigasi utama OSSIA">
-      <a href="home.html" data-page="home.html" aria-label="Home">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 3.8l8.5 6.7"/><path d="M5.8 9.7v10h12.4v-10"/><path d="M9.5 19.7v-6h5v6"/></svg>
-        <span>Home</span>
-      </a>
-      <a href="riwayat.html" data-page="riwayat.html" aria-label="Riwayat">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.8h12a1.5 1.5 0 0 1 1.5 1.5v15H4.5v-15A1.5 1.5 0 0 1 6 3.8Z"/><path d="M8 8h8M8 12h8M8 16h8"/></svg>
-        <span>Riwayat</span>
-      </a>
-      <a href="chat.html" data-page="chat.html" aria-label="Chat">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 11.2a7.7 7.7 0 0 1-8 7.4 8.8 8.8 0 0 1-3.4-.7l-4.3 1.4 1.4-3.7a7.1 7.1 0 0 1-1.7-4.4 7.8 7.8 0 0 1 8-7.4 7.8 7.8 0 0 1 8 7.4Z"/></svg>
-        <span>Chat</span>
-      </a>
-      <a href="me.html" data-page="me.html" aria-label="Me">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.5"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg>
-        <span>Me</span>
-      </a>
-    </nav>
-  </div>
-</section>
-
-<script>
-function openOssiaPage(page) {
-  const landing = document.querySelector('.landing-page.ossia-onboarding');
-  const shell = document.getElementById('ossiaAppShell');
-  const frame = document.getElementById('ossiaPageFrame');
-  const nav = document.getElementById('ossiaIndexNav');
-
-  if (!landing || !shell || !frame || !nav) return;
-
-  landing.style.display = 'none';
-  shell.style.display = 'flex';
-  nav.style.display = 'none';
-  frame.src = page;
-
-  // Tampilkan navigasi utama hanya pada halaman aplikasi, bukan pada login.
-  frame.onload = function () {
-    let currentFile = '';
-    try {
-      currentFile = frame.contentWindow.location.pathname.split('/').pop().toLowerCase();
-    } catch (error) {
-      currentFile = page.toLowerCase();
+  <style>
+    * {
+      box-sizing: border-box;
     }
 
-    const appPages = ['home.html', 'riwayat.html', 'chat.html', 'me.html'];
-    const showNav = appPages.includes(currentFile);
-    nav.style.display = showNav ? 'grid' : 'none';
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+    }
 
-    nav.querySelectorAll('a[data-page]').forEach(link => {
-      const active = link.dataset.page.toLowerCase() === currentFile;
-      link.classList.toggle('active', active);
-      if (active) link.setAttribute('aria-current', 'page');
-      else link.removeAttribute('aria-current');
-    });
-  };
-}
+    body {
+      font-family: Arial, sans-serif;
+      background: radial-gradient(
+        ellipse at center,
+        #f7faf8 0%,
+        #e7efea 100%
+      );
+    }
 
-document.addEventListener('DOMContentLoaded', function () {
-  const nav = document.getElementById('ossiaIndexNav');
-  const frame = document.getElementById('ossiaPageFrame');
-  if (!nav || !frame) return;
+    /* Frame aplikasi utama */
+    #ossiaAppShell {
+      display: flex;
+      position: fixed;
+      inset: 0;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      background: radial-gradient(
+        ellipse at center,
+        #f7faf8 0%,
+        #e7efea 100%
+      );
+    }
 
-  nav.querySelectorAll('a[data-page]').forEach(link => {
-    link.addEventListener('click', function (event) {
-      event.preventDefault();
-      frame.src = link.dataset.page;
-    });
-  });
-});
-</script>
+    #ossiaPhoneFrame {
+      position: relative;
+      width: min(100%, 430px);
+      height: min(850px, calc(100dvh - 24px));
+      min-height: 520px;
+      overflow: hidden;
+      border: 1px solid #d7e5dc;
+      border-radius: 38px;
+      background: #f4f8f5;
+
+      box-shadow:
+        0 20px 60px rgba(13, 70, 42, .16);
+    }
+
+    #ossiaPageFrame {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #f4f8f5;
+    }
+
+    /* Navigasi bawah */
+    #ossiaIndexNav {
+      display: none;
+      position: absolute;
+      z-index: 20;
+      left: 8px;
+      right: 8px;
+      bottom: 8px;
+
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 4px;
+      padding: 7px;
+
+      border: 1px solid #e5eee8;
+      border-radius: 19px;
+      background: rgba(255, 255, 255, .97);
+      box-shadow: 0 -5px 18px rgba(14, 65, 39, .08);
+    }
+
+    #ossiaIndexNav a {
+      display: flex;
+      min-width: 0;
+      min-height: 52px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+
+      border-radius: 13px;
+      color: #829188;
+      text-decoration: none;
+
+      font: 500 11px/1.1 Arial, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    #ossiaIndexNav a.active {
+      color: #087b45;
+      background: #edf7f1;
+      font-weight: 700;
+    }
+
+    #ossiaIndexNav svg {
+      display: block;
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    @media (max-height: 600px) {
+      #ossiaPhoneFrame {
+        height: calc(100dvh - 12px);
+        min-height: 0;
+        border-radius: 26px;
+      }
+    }
+
+    @media (max-width: 460px) {
+      #ossiaAppShell {
+        padding: 0;
+      }
+
+      #ossiaPhoneFrame {
+        width: 100%;
+        height: 100dvh;
+        min-height: 0;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      #ossiaIndexNav {
+        left: 6px;
+        right: 6px;
+        bottom: calc(6px + env(safe-area-inset-bottom));
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!--
+    Landing page diambil langsung dari landing.html.
+    Dengan begitu, desain landing di index dan landing
+    tidak perlu dibuat dua kali.
+  -->
+
+  <section id="ossiaAppShell" aria-label="Aplikasi OSSIA">
+
+    <div id="ossiaPhoneFrame">
+
+      <iframe
+        id="ossiaPageFrame"
+        title="Halaman OSSIA"
+        src="landing.html"
+      ></iframe>
+
+      <!-- Navigasi aplikasi -->
+      <nav
+        id="ossiaIndexNav"
+        aria-label="Navigasi utama OSSIA"
+      >
+
+        <a href="home.html" data-page="home.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3.5 10.5 12 3.8l8.5 6.7"/>
+            <path d="M5.8 9.7v10h12.4v-10"/>
+            <path d="M9.5 19.7v-6h5v6"/>
+          </svg>
+          <span>Home</span>
+        </a>
+
+        <a href="riwayat.html" data-page="riwayat.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 3.8h12a1.5 1.5 0 0 1 1.5 1.5v15H4.5v-15A1.5 1.5 0 0 1 6 3.8Z"/>
+            <path d="M8 8h8M8 12h8M8 16h8"/>
+          </svg>
+          <span>Riwayat</span>
+        </a>
+
+        <a href="chat.html" data-page="chat.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.2 11.2a7.7 7.7 0 0 1-8 7.4 8.8 8.8 0 0 1-3.4-.7l-4.3 1.4 1.4-3.7a7.1 7.1 0 0 1-1.7-4.4 7.8 7.8 0 0 1 8-7.4 7.8 7.8 0 0 1 8 7.4Z"/>
+          </svg>
+          <span>Chat</span>
+        </a>
+
+        <a href="me.html" data-page="me.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="7.5" r="3.5"/>
+            <path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/>
+          </svg>
+          <span>Me</span>
+        </a>
+
+      </nav>
+
+    </div>
+  </section>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const frame = document.getElementById("ossiaPageFrame");
+      const nav = document.getElementById("ossiaIndexNav");
+
+      if (!frame || !nav) return;
+
+      const appPages = [
+        "home.html",
+        "riwayat.html",
+        "chat.html",
+        "me.html"
+      ];
+
+      /*
+       * Fungsi ini bisa dipanggil dari landing.js
+       * yang berjalan di dalam iframe landing.html.
+       */
+      window.openOssiaPage = function (page) {
+        if (!page) return;
+
+        nav.style.display = "none";
+        frame.src = page;
+      };
+
+      function getCurrentFile() {
+        try {
+          return new URL(
+            frame.contentWindow.location.href
+          ).pathname.split("/").pop().toLowerCase();
+        } catch (error) {
+          return new URL(
+            frame.src,
+            window.location.href
+          ).pathname.split("/").pop().toLowerCase();
+        }
+      }
+
+      function updateNavigation() {
+        const currentFile = getCurrentFile();
+        const isAppPage = appPages.includes(currentFile);
+
+        nav.style.display = isAppPage ? "grid" : "none";
+
+        nav.querySelectorAll("a[data-page]").forEach((link) => {
+          const active =
+            link.dataset.page.toLowerCase() === currentFile;
+
+          link.classList.toggle("active", active);
+
+          if (active) {
+            link.setAttribute("aria-current", "page");
+          } else {
+            link.removeAttribute("aria-current");
+          }
+        });
+      }
+
+      frame.addEventListener("load", updateNavigation);
+
+      nav.querySelectorAll("a[data-page]").forEach((link) => {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          window.openOssiaPage(link.dataset.page);
+        });
+      });
+    })();
+  </script>
 
 </body>
 </html>
