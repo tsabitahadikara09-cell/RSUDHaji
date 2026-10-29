@@ -101,7 +101,7 @@
         </svg>
       </div>
       <div class="om-profile-details">
-        <span class="om-badge-pill">AN. AHMAD ARIFIN</span>
+        <span class="om-badge-pill" id="mePatientName">An. Ahmad Arifin</span>
         <div class="om-role-label">PASIEN ANAK</div>
         <div class="om-info-text">No. Pasien : RM-PADANG001</div>
         <div class="om-info-text">Email : awikwokwikwok</div>
@@ -137,6 +137,29 @@
   </main>
 </section>
 
+<script>
+/* Sinkronisasi nama pasien untuk halaman Home dan Me. */
+(function () {
+  const PROFILE_KEY = "ossia_patient_profile";
+  const DEFAULT_NAME = "An. Ahmad Arifin";
+  document.addEventListener("DOMContentLoaded", function () {
+    const nameElement = document.getElementById("mePatientName");
+    if (!nameElement) return;
+    let profile = {};
+    try {
+      profile = JSON.parse(localStorage.getItem(PROFILE_KEY) || "{}");
+      if (!profile || typeof profile !== "object" || Array.isArray(profile)) profile = {};
+    } catch (error) { profile = {}; }
+    const existingName = String(nameElement.textContent || "").trim();
+    const savedName = String(profile.name || profile.nama || "").trim();
+    const patientName = savedName || existingName || DEFAULT_NAME;
+    nameElement.textContent = patientName;
+    profile.name = patientName;
+    try { localStorage.setItem(PROFILE_KEY, JSON.stringify(profile)); }
+    catch (error) { console.warn("Nama pasien tidak dapat disimpan di browser.", error); }
+  });
+})();
+</script>
 <script>
 (function () {
   const pages = { landing:"landing.html", login:"login.html", home:"home.html", dashboard:"home.html",

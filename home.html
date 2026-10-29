@@ -26,7 +26,7 @@
 
   <main class="om-content">
     <section class="om-welcome">
-      <div><p class="om-eyebrow">DASHBOARD PASIEN</p><h1>Halo, An. Arka! <span>👋</span></h1><p>Pantau pemeriksaan usia tulang karpalmu di sini.</p></div>
+      <div><p class="om-eyebrow">DASHBOARD PASIEN</p><h1>Halo, <span id="homePatientName">An. Ahmad Arifin</span>! <span>👋</span></h1><p>Pantau pemeriksaan usia tulang karpalmu di sini.</p></div>
       <div class="om-avatar">👦</div>
     </section>
 
@@ -75,6 +75,30 @@
 
 
 <script src="home.js"></script>
+<script>
+/* Sinkronisasi nama pasien untuk halaman Home dan Me. */
+(function () {
+  const PROFILE_KEY = "ossia_patient_profile";
+  const DEFAULT_NAME = "An. Ahmad Arifin";
+  document.addEventListener("DOMContentLoaded", function () {
+    const nameElement = document.getElementById("homePatientName");
+    if (!nameElement) return;
+    let profile = {};
+    try {
+      profile = JSON.parse(localStorage.getItem(PROFILE_KEY) || "{}");
+      if (!profile || typeof profile !== "object" || Array.isArray(profile)) profile = {};
+    } catch (error) { profile = {}; }
+    const savedName = String(profile.name || profile.nama || "").trim();
+    const patientName = savedName || DEFAULT_NAME;
+    nameElement.textContent = patientName;
+    if (!savedName) {
+      profile.name = patientName;
+      try { localStorage.setItem(PROFILE_KEY, JSON.stringify(profile)); }
+      catch (error) { console.warn("Nama pasien tidak dapat disimpan di browser.", error); }
+    }
+  });
+})();
+</script>
 
 
 <script>
