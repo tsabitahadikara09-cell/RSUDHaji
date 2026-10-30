@@ -99,3 +99,23 @@ body > .ossia-mobile-page { width: min(390px, 100vw) !important; max-width: none
 .om-empty-results p { max-width:300px; margin:0 0 14px; color:var(--om-muted); font-size:.7rem; line-height:1.65; }
 .om-empty-link { border:1px solid #cfe6d7; border-radius:11px; padding:9px 12px; background:#f7fcf8; color:var(--om-green); font:700 .7rem 'Public Sans',sans-serif; cursor:pointer; }
 .om-empty-link:active { background:#e5f5ec; }
+
+/* OSSIA UI refinement: header and upload card */
+.ossia-mobile-page { position:relative; }
+.om-topbar { min-height:68px; height:68px; padding:0 18px; display:flex; align-items:center; }
+.om-brand { gap:10px; line-height:1.05; }
+.om-logo { flex:0 0 38px; width:38px; height:38px; }
+.om-icon-btn { width:46px; height:46px; border-radius:15px; flex:0 0 46px; }
+.upload-card .om-section-title { align-items:flex-start; }
+.upload-card .om-section-title > .om-tag { display:none !important; }
+.om-dropzone small { display:block; }
+.om-primary-btn { min-height:46px; }
+.om-file-meta small { color:var(--om-muted); }
+@media (min-width:431px) {
+  body > .ossia-mobile-page { height:min(844px,100dvh) !important; min-height:0 !important; overflow-y:auto !important; overflow-x:hidden !important; padding-bottom:78px !important; }
+  body > .ossia-mobile-page .om-topbar { position:sticky; top:0; z-index:5; }
+}
+@media (max-width:430px) {
+  body > .ossia-mobile-page { height:100dvh !important; min-height:0 !important; overflow-y:auto !important; padding-bottom:78px !important; border-radius:0 !important; }
+  .om-topbar { position:sticky; top:0; z-index:5; }
+}

@@ -462,3 +462,28 @@ body > #view-chatbot .stats { grid-template-columns: minmax(0, 1fr) !important; 
 }
 
 body > .shell, body > #view-me, body > #view-chatbot { padding-bottom: 72px !important; }
+
+/* FINAL OSSIA frame + one clean bottom navigation */
+body { overflow:hidden !important; }
+body > .ossia-mobile-page, body > .shell, body > #view-me, body > #view-chatbot {
+  box-sizing:border-box !important;
+}
+.mobile-nav {
+  position:fixed !important; z-index:9999 !important;
+  left:50% !important; right:auto !important;
+  bottom:max(0px, calc((100dvh - min(844px, 100dvh))/2)) !important;
+  transform:translateX(-50%) !important;
+  width:min(390px,100vw) !important; min-height:70px !important;
+  display:grid !important; grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  padding:7px 8px max(7px,env(safe-area-inset-bottom)) !important;
+  background:rgba(255,255,255,.98) !important;
+  border:1px solid #dce9e1 !important; border-bottom:0 !important;
+  border-radius:22px 22px 30px 30px !important;
+  box-shadow:0 -3px 16px rgba(10,79,43,.06) !important;
+  backdrop-filter:blur(14px);
+}
+.mobile-nav button { min-height:50px !important; border-radius:13px !important; }
+@media(max-width:430px) {
+ body { align-items:stretch !important; }
+ .mobile-nav { bottom:0 !important; border-radius:18px 18px 0 0 !important; }
+}

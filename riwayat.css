@@ -54,3 +54,19 @@ body > .ossia-mobile-page { width: min(390px, 100vw) !important; max-width: none
 @media (min-width: 700px) {
   body > .history-page .om-content { max-width: none !important; }
 }
+
+/* Match Home header and content frame */
+.history-page { position:relative; }
+.history-page .om-topbar { min-height:68px; height:68px; padding:0 18px; display:flex; align-items:center; }
+.history-page .om-brand { gap:10px; line-height:1.05; }
+.history-page .om-logo { flex:0 0 38px; width:38px; height:38px; }
+.history-page .om-icon-btn { width:46px; height:46px; border-radius:15px; }
+.history-page .om-content { padding-top:19px !important; }
+@media (min-width:431px) {
+ body > .history-page { height:min(844px,100dvh) !important; min-height:0 !important; overflow-y:auto !important; overflow-x:hidden !important; padding-bottom:78px !important; }
+ body > .history-page .om-topbar { position:sticky; top:0; z-index:5; }
+}
+@media (max-width:430px) {
+ body > .history-page { height:100dvh !important; min-height:0 !important; overflow-y:auto !important; padding-bottom:78px !important; border-radius:0 !important; }
+ .history-page .om-topbar { position:sticky; top:0; z-index:5; }
+}

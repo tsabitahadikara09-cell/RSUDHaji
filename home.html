@@ -31,21 +31,21 @@
     </section>
 
     <section class="om-card upload-card">
-      <div class="om-section-title"><div><p class="om-eyebrow">PEMERIKSAAN BARU</p><h2>Analisis X-Ray Karpal</h2><p>Unggah citra untuk memulai pemeriksaan.</p></div><span class="om-tag">Uji upload</span></div>
+      <div class="om-section-title"><div><p class="om-eyebrow">PEMERIKSAAN BARU</p><h2>Analisis X-Ray Karpal</h2><p>Unggah citra untuk memulai pemeriksaan.</p></div></div>
       <label class="om-dropzone" id="homeDropzone" for="homeXrayFile">
         <span class="om-upload-symbol">⇧</span>
         <strong id="homeUploadTitle">Pilih atau seret file X-ray</strong>
         <span id="homeUploadHint">PNG atau JPG dari perangkatmu</span>
-        <small>Maks. 10 MB · UI upload saja</small>
+        <small>PNG atau JPG · Maks. 10 MB</small>
         <input type="file" id="homeXrayFile" accept=".png,.jpg,.jpeg,image/png,image/jpeg">
       </label>
       <div class="om-file-preview" id="homeFilePreview" hidden>
         <img id="homePreviewImage" alt="Pratinjau gambar yang dipilih">
-        <div class="om-file-meta"><strong id="homeFileName"></strong><span id="homeFileSize"></span><small>File dipilih untuk uji tampilan.</small></div>
+        <div class="om-file-meta"><strong id="homeFileName"></strong><span id="homeFileSize"></span><small>Pratinjau file X-ray</small></div>
         <button type="button" id="homeRemoveFile" aria-label="Hapus file">×</button>
       </div>
-      <button class="om-primary-btn" type="button" id="homeTestUpload" disabled>Uji upload <span>→</span></button>
-      <p class="om-helper" id="homeUploadMessage">Pilih gambar untuk melihat pratinjau. Belum ada analisis ROI atau segmentasi.</p>
+      <button class="om-primary-btn" type="button" id="homeTestUpload" disabled>Lanjutkan Analisis <span>→</span></button>
+      <p class="om-helper" id="homeUploadMessage">Pilih citra X-ray untuk memulai pemeriksaan.</p>
     </section>
 
     <section class="om-section">
@@ -65,7 +65,7 @@
           </svg>
         </div>
         <h3>Belum ada hasil pemeriksaan</h3>
-        <p>Hasil pemeriksaan akan muncul di sini setelah kamu melakukan pemeriksaan. Untuk saat ini, unggah X-ray hanya digunakan untuk uji tampilan dan belum menghasilkan analisis.</p>
+        <p>Hasil pemeriksaan akan muncul di sini setelah kamu melakukan pemeriksaan.</p>
         <button class="om-empty-link" type="button" onclick="bukaHalaman('riwayat')">Buka riwayat pemeriksaan →</button>
       </article>
     </section>
