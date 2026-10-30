@@ -23,7 +23,7 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background: radial-gradient(
         ellipse at center,
         #f7faf8 0%,
@@ -73,34 +73,35 @@
       display: none;
       position: absolute;
       z-index: 20;
-      left: 8px;
-      right: 8px;
-      bottom: 8px;
+      left: 0;
+      right: 0;
+      bottom: 0;
 
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 4px;
-      padding: 7px;
+      gap: 2px;
+      padding: 6px 10px calc(6px + env(safe-area-inset-bottom));
 
-      border: 1px solid #e5eee8;
-      border-radius: 19px;
-      background: rgba(255, 255, 255, .97);
-      box-shadow: 0 -5px 18px rgba(14, 65, 39, .08);
+      border: 0;
+      border-top: 1px solid #e5eee8;
+      border-radius: 0;
+      background: #ffffff;
+      box-shadow: none;
     }
 
     #ossiaIndexNav a {
       display: flex;
       min-width: 0;
-      min-height: 52px;
+      min-height: 54px;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 3px;
 
-      border-radius: 13px;
+      border-radius: 12px;
       color: #829188;
       text-decoration: none;
 
-      font: 500 11px/1.1 Arial, sans-serif;
+      font: 500 11px/1.1 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
       -webkit-tap-highlight-color: transparent;
     }
 

@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="home.css">
-<link rel="stylesheet" href="mobile-pages.css">
+
 <style>
   body > .om-chat-page, .om-chat-page {
     background: radial-gradient(circle at 0% 0%, rgba(10, 79, 43, 0.28) 0%, transparent 55%),
@@ -101,6 +101,7 @@
   .drawer-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); z-index: 1050; display: none; backdrop-filter: blur(2px); }
   .drawer-overlay.show { display: block; }
 </style>
+<link rel="stylesheet" href="mobile-pages.css">
 </head>
 <body>
 <section class="ossia-mobile-page om-chat-page" id="view-chat">
@@ -122,10 +123,11 @@
   <!-- Header -->
   <header class="om-topbar">
     <div class="om-brand"><span class="om-logo">O<i></i></span><span>OSSIA<small>RSUD Haji</small></span></div>
-    <button class="om-icon-btn" type="button" onclick="toggleHistoryDrawer()">
-      <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
-      </svg>
+    <button class="om-icon-btn" id="chatNotifications" type="button" aria-label="Notifikasi" onclick="showOssiaToast('Belum ada notifikasi baru.')">
+      <svg class="om-bell-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+        <path d="M10 21h4"></path>
+      </svg><b aria-hidden="true"></b>
     </button>
   </header>
   
@@ -408,19 +410,6 @@
     toast.classList.add("show");
     window.setTimeout(() => toast.classList.remove("show"), 2500);
   };
-
-  document.addEventListener("DOMContentLoaded", function () {
-    const current = location.pathname.split("/").pop().toLowerCase().replace(".html", "");
-    if (!["home", "riwayat", "chat", "me"].includes(current) || document.querySelector(".mobile-nav")) return;
-    const items = [["home","⌂","Home"],["riwayat","▤","Riwayat"],["chat","▢","Chat"],["me","♙","Me"]];
-    const nav = document.createElement("nav");
-    nav.className = "mobile-nav";
-    nav.setAttribute("aria-label", "Navigasi utama");
-    nav.innerHTML = items.map(([id, icon, label]) =>
-      `<button type="button" class="${current===id?"active":""}" aria-label="${label}" ${current===id?'aria-current="page"':""} onclick="bukaHalaman('${id}')"><span aria-hidden="true">${icon}</span><span>${label}</span></button>`
-    ).join("");
-    document.body.appendChild(nav);
-  });
 })();
 </script>
 </body>

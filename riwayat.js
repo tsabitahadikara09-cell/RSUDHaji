@@ -19,6 +19,18 @@
       status === "Normal" ? "normal" : "review";
   }
   function initRiwayatUI() {
+    // Bersihkan satu kali data uji lama agar tampilan awal benar-benar kosong.
+    // Setelah penanda ini tersimpan, riwayat hasil upload berikutnya tetap dipertahankan.
+    const EMPTY_STATE_MIGRATION = "ossia_empty_state_migration_v1";
+    try {
+      if (localStorage.getItem(EMPTY_STATE_MIGRATION) !== "done") {
+        localStorage.removeItem(HISTORY_KEY);
+        localStorage.setItem(EMPTY_STATE_MIGRATION, "done");
+      }
+    } catch (error) {
+      console.warn("Data uji lama tidak dapat dibersihkan otomatis.", error);
+    }
+
     const list = document.getElementById("historyList");
     const search = document.getElementById("historySearch");
     if (!list || !search || search.dataset.bound === "1") return;
