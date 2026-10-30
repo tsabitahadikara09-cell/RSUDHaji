@@ -4,7 +4,7 @@
 <meta name="theme-color" content="#0a4f2b"><title>OSSIA | Profil</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="home.css">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="home.css"><link rel="stylesheet" href="mobile-pages.css">
 <style>
   .om-me-content {
     background: linear-gradient(180deg, #0a4f2b 0%, #e5f5ec 45%, #f4f9f6 100%);
@@ -69,7 +69,7 @@
   .modal-btn-danger { width: 100%; background: #d32f2f; color: #fff; border: none; border-radius: 99px; padding: 14px; font-size: 0.85rem; font-weight: 700; cursor: pointer; margin-top: 10px; }
   .modal-btn-secondary { width: 100%; background: #e4eee7; color: #172b21; border: none; border-radius: 99px; padding: 14px; font-size: 0.85rem; font-weight: 700; cursor: pointer; margin-top: 8px; }
 </style>
-<link rel="stylesheet" href="mobile-pages.css">
+<link rel="stylesheet" href="ossia-shared-ui.css">
 </head><body>
 <section class="ossia-mobile-page om-me-page" id="view-me">
   <header class="om-topbar">
@@ -81,60 +81,46 @@
     </button>
   </header>
   <main class="om-content om-me-content">
-    <section class="om-page-intro">
-      <h1>PROFILE</h1>
-    </section>
+    <section class="om-page-intro"><h1>PROFIL PASIEN</h1></section>
 
-    <!-- Kartu Profil Utama -->
     <div class="om-custom-profile-card">
       <div class="om-custom-avatar">
-        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="100" height="100" fill="#dff3e6"/><path d="M0 70C20 60 40 80 60 70C80 60 90 75 100 70V100H0V70Z" fill="#83b99a" fill-opacity="0.6"/><circle cx="50" cy="40" r="18" fill="#ffdf88"/><path d="M20 85C30 70 50 75 70 85" stroke="#0a4f2b" stroke-width="3" stroke-linecap="round"/>
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="100" height="100" rx="50" fill="#DDF3E6"/>
+          <path d="M15 100c3-20 18-31 35-31s32 11 35 31" fill="#8FC9A7"/>
+          <path d="M31 43c0-17 8-27 20-27 13 0 21 10 21 27 0 18-9 29-21 29S31 61 31 43Z" fill="#F2C49D"/>
+          <path d="M29 42c-2-19 8-31 24-31 15 0 24 12 21 30-4-3-7-8-9-13-8 8-21 11-36 10Z" fill="#5B4032"/>
+          <circle cx="43" cy="45" r="2" fill="#26352D"/><circle cx="61" cy="45" r="2" fill="#26352D"/>
+          <path d="M45 57c4 4 10 4 14 0" stroke="#A85E50" stroke-width="2.5" stroke-linecap="round"/>
         </svg>
       </div>
       <div class="om-profile-details">
         <span class="om-badge-pill" id="mePatientName">An. Ahmad Arifin</span>
-        <div class="om-info-text"><b class="i18n" data-id="No. Pasien:" data-en="Patient No:">No. Pasien:</b> RM-PADANG001</div>
-        <div class="om-info-text"><b class="i18n" data-id="Umur:" data-en="Age:">Umur:</b> <span class="i18n" data-id="9 Tahun" data-en="9 Years">9 Tahun</span></div>
-        <div class="om-info-text"><b class="i18n" data-id="Kelamin:" data-en="Gender:">Kelamin:</b> <span class="i18n" data-id="Laki-laki" data-en="Male">Laki-laki</span></div>
+        <div class="om-info-text">ID Pasien: <b>OSSIA-20261028-001</b></div>
       </div>
+      <span aria-hidden="true" style="color:#718279;font-size:22px">›</span>
     </div>
 
-    <!-- Navigasi Menu (Terdapat Atribut i18n untuk Terjemahan) -->
-    <section class="om-profile-menu">
-      <button type="button" onclick="openModal('modalDataPribadi')">
-        <span class="om-profile-menu-icon">♙</span>
-        <span>
-          <strong class="i18n" data-id="Data Pribadi & Akun" data-en="Personal Data & Account">Data Pribadi & Akun</strong>
-          <small class="i18n" data-id="Informasi detail pasien" data-en="Detailed patient information">Informasi detail pasien</small>
-        </span><b>›</b>
-      </button>
-      <button type="button" onclick="bukaHalaman('riwayat')">
-        <span class="om-profile-menu-icon">▤</span>
-        <span>
-          <strong class="i18n" data-id="Riwayat Pemeriksaan" data-en="Medical History">Riwayat Pemeriksaan</strong>
-          <small class="i18n" data-id="Lihat catatan pemeriksaan X-ray" data-en="View X-ray examination records">Lihat catatan pemeriksaan X-ray</small>
-        </span><b>›</b>
-      </button>
-      <button type="button" onclick="openModal('modalPengaturan')">
-        <span class="om-profile-menu-icon">⚙</span>
-        <span>
-          <strong class="i18n" data-id="Pengaturan & Privasi" data-en="Settings & Privacy">Pengaturan & Privasi</strong>
-          <small class="i18n" data-id="Preferensi aplikasi" data-en="Application preferences">Preferensi aplikasi</small>
-        </span><b>›</b>
-      </button>
-      <button type="button" onclick="openModal('modalBantuan')">
-        <span class="om-profile-menu-icon">?</span>
-        <span>
-          <strong class="i18n" data-id="Bantuan & Panduan" data-en="Help & Guide">Bantuan & Panduan</strong>
-          <small class="i18n" data-id="Panduan skrining karpal AI" data-en="AI carpal screening guide">Panduan skrining karpal AI</small>
-        </span><b>›</b>
-      </button>
+    <section class="om-profile-menu" aria-label="Informasi pasien">
+      <button type="button" onclick="openModal('modalDataPribadi')"><span class="om-profile-menu-icon">♙</span><span><strong>Informasi pribadi</strong></span><b>›</b></button>
+      <button type="button" onclick="openModal('modalPengaturan')"><span class="om-profile-menu-icon">♙</span><span><strong>Keamanan akun</strong></span><b>›</b></button>
+      <button type="button" onclick="openModal('modalNotifikasi')"><span class="om-profile-menu-icon">♧</span><span><strong>Notifikasi</strong></span><b>›</b></button>
     </section>
-    
-    <button class="om-logout-btn" type="button" onclick="bukaHalaman('login')">
-      <span>⇥</span> <span class="i18n" data-id="Keluar" data-en="Logout">Keluar</span>
-    </button>
+
+    <p class="om-eyebrow" style="margin:0 4px 8px">PENGATURAN</p>
+    <section class="om-profile-menu" aria-label="Pengaturan aplikasi">
+      <button type="button" onclick="openModal('modalBahasa')"><span class="om-profile-menu-icon">◎</span><span><strong>Bahasa</strong></span><small style="color:#718279">Indonesia</small><b>›</b></button>
+      <button type="button" onclick="openModal('modalPengaturan')"><span class="om-profile-menu-icon">☾</span><span><strong>Mode tampilan</strong></span><small style="color:#718279">Terang</small><b>›</b></button>
+    </section>
+
+    <p class="om-eyebrow" style="margin:0 4px 8px">BANTUAN</p>
+    <section class="om-profile-menu" aria-label="Bantuan">
+      <button type="button" onclick="openModal('modalBantuan')"><span class="om-profile-menu-icon">ⓘ</span><span><strong>Pusat bantuan</strong></span><b>›</b></button>
+      <button type="button" onclick="openModal('modalBantuan')"><span class="om-profile-menu-icon">ⓘ</span><span><strong>Tentang OSSIA</strong></span><b>›</b></button>
+    </section>
+
+    <p class="om-eyebrow" style="margin:0 4px 8px">AKUN</p>
+    <button class="om-logout-btn" type="button" onclick="bukaHalaman('login')"><span>⇥</span><span>Keluar</span></button>
   </main>
 
   <!-- ================= KUMPULAN MODAL ================= -->
@@ -412,6 +398,18 @@
     toast.classList.add("show");
     window.setTimeout(() => toast.classList.remove("show"), 2500);
   };
+  document.addEventListener("DOMContentLoaded", function () {
+    const current = location.pathname.split("/").pop().toLowerCase().replace(".html", "");
+    if (!["home", "riwayat", "chat", "me"].includes(current) || document.querySelector(".mobile-nav")) return;
+    const items = [["home","⌂","Home"],["riwayat","▤","Riwayat"],["chat","▢","Chat"],["me","♙","Me"]];
+    const nav = document.createElement("nav");
+    nav.className = "mobile-nav";
+    nav.setAttribute("aria-label", "Navigasi utama");
+    nav.innerHTML = items.map(([id, icon, label]) =>
+      `<button type="button" class="${current===id?"active":""}" aria-label="${label}" ${current===id?'aria-current="page"':""} onclick="bukaHalaman('${id}')"><span aria-hidden="true">${icon}</span><span>${label}</span></button>`
+    ).join("");
+    document.body.appendChild(nav);
+  });
 })();
 </script>
 </body></html>

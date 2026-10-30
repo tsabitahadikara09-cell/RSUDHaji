@@ -10,9 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="home.css">
-
 <link rel="stylesheet" href="riwayat.css">
-<link rel="stylesheet" href="mobile-pages.css">
+<link rel="stylesheet" href="ossia-shared-ui.css">
 </head>
 <body>
 <section class="ossia-mobile-page history-page" id="view-riwayat">
@@ -79,6 +78,29 @@
     toast.classList.add("show");
     window.setTimeout(() => toast.classList.remove("show"), 2500);
   };
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const file = window.location.pathname.split("/").pop().toLowerCase();
+    const current = file.replace(".html", "");
+    if (!["home", "riwayat", "chat", "me"].includes(current)) return;
+
+    // Avoid duplicate nav if script is included twice.
+    if (document.querySelector(".mobile-nav")) return;
+
+    const nav = document.createElement("nav");
+    nav.className = "mobile-nav";
+    nav.setAttribute("aria-label", "Navigasi utama");
+    const items = [
+      ["home", "⌂", "Home"],
+      ["riwayat", "▤", "Riwayat"],
+      ["chat", "▢", "Chat"],
+      ["me", "♙", "Me"]
+    ];
+    nav.innerHTML = items.map(([id, icon, label]) =>
+      `<button type="button" class="${current === id ? "active" : ""}" aria-label="${label}" ${current === id ? 'aria-current="page"' : ""} onclick="bukaHalaman('${id}')"><span aria-hidden="true">${icon}</span><span>${label}</span></button>`
+    ).join("");
+    document.body.appendChild(nav);
+  });
 })();
 </script>
 

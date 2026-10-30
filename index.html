@@ -23,7 +23,7 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
       background: radial-gradient(
         ellipse at center,
         #f7faf8 0%,
@@ -78,26 +78,26 @@
       bottom: 0;
 
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 2px;
-      padding: 6px 10px calc(6px + env(safe-area-inset-bottom));
+      gap: 0;
+      padding: 6px 7px calc(6px + env(safe-area-inset-bottom));
 
       border: 0;
       border-top: 1px solid #e5eee8;
-      border-radius: 0;
-      background: #ffffff;
+      border-radius: 0 0 38px 38px;
+      background: #fff;
       box-shadow: none;
     }
 
     #ossiaIndexNav a {
       display: flex;
       min-width: 0;
-      min-height: 54px;
+      min-height: 56px;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 3px;
 
-      border-radius: 12px;
+      border-radius: 13px;
       color: #829188;
       text-decoration: none;
 
@@ -145,9 +145,10 @@
       }
 
       #ossiaIndexNav {
-        left: 6px;
-        right: 6px;
-        bottom: calc(6px + env(safe-area-inset-bottom));
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 0;
       }
     }
   </style>
