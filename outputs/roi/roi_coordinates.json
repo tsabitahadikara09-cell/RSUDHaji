@@ -1,0 +1,12 @@
+{
+    "source_image": "outputs\\preprocessing\\03_preprocessed.png",
+    "x": 905,
+    "y": 1785,
+    "width": 569,
+    "height": 412,
+    "image_width": 2320,
+    "image_height": 2920,
+    "roi_file": "outputs/roi/carpal_roi.png",
+    "preview_file": "outputs/roi/roi_preview.png",
+    "coordinate_convention": "pixel; origin top-left; x rightward; y downward"
+}

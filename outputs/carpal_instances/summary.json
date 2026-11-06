@@ -1,0 +1,15 @@
+{
+  "summary": {
+    "detected_instances": 8,
+    "total_bone_area_px": 136291,
+    "total_candidate_ossification_area_px": 36966,
+    "total_candidate_ratio_percent": 27.123,
+    "bone_threshold": 123.0
+  },
+  "warnings": [
+    "Instance 1..N adalah label hasil pemisahan algoritmik, bukan nama tulang karpal anatomis.",
+    "Kandidat osifikasi berbasis intensitas radiograf; bukan segmentasi pusat osifikasi tervalidasi.",
+    "Nilai rasio adalah rasio kandidat piksel terhadap mask tulang hasil algoritma, bukan rasio klinis.",
+    "Perlu anotasi ahli/ground truth dan evaluasi Dice-IoU sebelum klaim akurasi atau penggunaan klinis."
+  ]
+}
